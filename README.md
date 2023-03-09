@@ -5,6 +5,7 @@
 
 ## 2주차
 Github 와 Git 사용 방법 안내
+
 README 작성방법 안내
 
 자바스크립트, ES6, Js자료형
