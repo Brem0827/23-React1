@@ -10,7 +10,7 @@
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flatsquare&logo=HTML5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flatsquare&logo=CSS3&logoColor=white)
 
-[![Solved.ac프로필](http://mazassumnida.wtf/api/v2/generate_badgeboj=Brem0827)](https://solved.ac/Brem0827)
+[![Solved.ac 프로필](http://mazassumnida.wtf/api/v2/generate_badge?boj=Brem0827)](https://www.acmicpc.net/user/Brem0827)
 
 
 ## 강의 목록
@@ -27,6 +27,9 @@
 * 동기식 & 비 동기식
 * 컴포넌트 기반의 구조
 * 재사용성 & 의존성
+* 활발한 지식 공유와 커뮤니티
+* 리액트 네이티브
+* DeepL
 
 ---
 
