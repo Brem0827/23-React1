@@ -1,14 +1,21 @@
-### 201930324 이현종
+<p align="center">
+ <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
+ <h2 align="center">GitHub Readme Stats</h2>
+ <p align="center">Get dynamically generated GitHub stats on your READMEs!</p>
+</p>
 
 ## 강의 목록
-1. [1주차](https://github.com/Brem0827/23-React1)
-2. [2주차](https://github.com/Brem0827/23-React1/tree/main/src)
+1. [3주차](#3주차)
+2. [2주차](#2주차)
+3. [1주차](#1주차)
 
 ---
 
 ## 3주차
 
 * 03/16
+* JavaScript 라이브러리 설명
+* 동기식 & 비 동기식
 
 ---
 
