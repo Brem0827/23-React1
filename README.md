@@ -12,6 +12,7 @@
 
 [![Solved.ac 프로필](http://mazassumnida.wtf/api/v2/generate_badge?boj=guswhd284)](https://www.acmicpc.net/user/guswhd284)
 
+<!-- main 영역 -->
 
 ## 강의 목록
 1. [3주차](#3주차)
@@ -25,6 +26,7 @@
 * 03/16
 * JavaScript 라이브러리 설명
 * DeepL
+* 클래스 형 컴포넌트 & 함수 형 컴포넌트
 
 리액트의 장점
 
