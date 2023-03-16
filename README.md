@@ -5,8 +5,7 @@
  <p align="center">웹 애플리케이션 전공</p>
 </p>
 
-![React](https://img.shields.io/badge/React-61DAFB?style=flatsimpleicon
-square&logo=React&logoColor=black)
+![React](https://img.shields.io/badge/React-61DAFB?style=flatsimpleiconsquare&logo=React&logoColor=black)
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC.svg?&style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
 
 
