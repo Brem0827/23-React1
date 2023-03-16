@@ -1,8 +1,11 @@
+<!-- header 영역 -->
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">201930324 이현종</h2>
  <p align="center">웹 애플리케이션 전공</p>
 </p>
+
+![Java](https://img.shields.io/badge/Java-007396.svg?&style=for-the-badge&logo=Java&logoColor=white)
 
 ## 강의 목록
 1. [3주차](#3주차)
