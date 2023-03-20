@@ -2,7 +2,7 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">201930324 이현종</h2>
- <p align="center">웹 애플리케이션 전공</p>
+ <p align="center">📖 웹 애플리케이션 전공</p>
 </p>
 
 ![React](https://img.shields.io/badge/React-61DAFB?style=flatsimpleiconsquare&logo=React&logoColor=black)
@@ -15,9 +15,9 @@
 <!-- main 영역 -->
 
 ## 강의 목록
-1. [3주차](#3주차)
-2. [2주차](#2주차)
-3. [1주차](#1주차)
+1. [3주차](#3주차)➡️
+2. [2주차](#2주차)➡️
+3. [1주차](#1주차)➡️
 
 ---
 
@@ -28,7 +28,7 @@
 * DeepL
 * 클래스 형 컴포넌트 & 함수 형 컴포넌트
 
-리액트의 장점
+📖 리액트의 장점
 
 * 동기식 & 비 동기식
 * 컴포넌트 기반의 구조
@@ -36,7 +36,7 @@
 * 활발한 지식 공유와 커뮤니티
 * 리액트 네이티브
 
-리액트의 단점
+📖 리액트의 단점
 
 * 방대한 학습량
 * 높은 상태 관리 복잡도
