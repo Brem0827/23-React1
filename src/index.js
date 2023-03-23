@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Clock from './chapter04/clock';
 import reportWebVitals from './reportWebVitals';
 
 
@@ -13,6 +14,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route index element={<App />} />
+        <Route path="clock" element={<Clock />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
