@@ -128,7 +128,7 @@
   * ES6의 클래스를 사용하여 만들어진 컴포넌트
   </details>
   <details><summary>📚 컴포넌트 이름 짓기</summary>
-  * 컴포넌트의 이름은 항상 대문자로 시작해야 함
+  * 컴포넌트의 이름은 항상 대문자로 시작해야 함<br />
   * 소문자로 시작할 경우 컴포넌트를 DOM 태그로 인식하기 때문
   </details>
   <details><summary>📚 컴포넌트 렌더링</summary>
