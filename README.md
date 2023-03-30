@@ -125,7 +125,7 @@
   * 함수 형태로 된 컴포넌트
   </details>
   <details><summary>📚 클래스 컴포넌트</summary>
-  * ES6의 클래스를 사용하여 만들어짐 컴포넌트
+  * ES6의 클래스를 사용하여 만들어진 컴포넌트
   </details>
   <details><summary>📚 컴포넌트 이름 짓기</summary>
   * 컴포넌트의 이름은 항상 대문자로 시작해야 함
