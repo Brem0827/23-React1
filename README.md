@@ -62,6 +62,41 @@
 
 </details>
 
+<details><summary>📖 State란? </summary>
+
+* 리액트에서의 state는 리액트 컴포넌트의 상태를 의미합니다.
+* 상태라는 단어가 정상인지 비정상인지를 나타내는 것 이라기 보다는 리액트 컴포넌트의 데이터라는 의미에 더 가깝습니다.
+* 리액트 컴포넌트의 변경 가능한 데이터를 state 라고 부릅니다.
+* 컴포넌트를 개발하는 개발자가 직접 정의해서 사용
+* state가 변경될 경우 컴포넌트가 재렌더링됨
+
+* state를 정의할 때 중요한 점은 꼭 렌더링이나 데이터 흐름에 사용되는 값만 state에 포함시켜야 한다는 것 입니다.
+</details>
+
+<details><summary>📖 State의 특징 </summary>
+
+* 자바스크립트 객체 형태로 존재
+* 직접적인 변경이 불가능
+  
+  <details><summary>📚 State의 특징 </summary>
+   
+    * 자바스크립트 객체 형태로 존재
+    * 직접적인 변경이 불가능 함
+
+    <details><summary>📚 클래스 컴포넌트 </summary>
+   
+    * 생성자에서 모든 state를 한 번에 정의
+    * state를 변경하고자 할 때에는 꼭 setState() 함수를 사용해야 함
+    </details>
+
+    <details><summary>📚 함수 컴포넌트 </summary>
+   
+    * useState() 훅을 사용하여 각각의 state를 정의
+    * 각 state별로 주어지는 set함수를 사용하여 state값을 변경
+    </details>
+  </details>
+</details>
+
 ---
 
 ## 5주차
