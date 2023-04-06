@@ -97,6 +97,38 @@
   </details>
 </details>
 
+<details><summary>📖 생명주기 </summary>
+
+<img src="./image/Lifecycle.png">
+
+* 각 과정에서 하단에 초록색으로 표시된 부분은 생명주기에 따라 호출되는 클래스 컴포넌트의 함수입니다.
+* 이 함수들을 Lifecycle method라고 부르며, 번역하면 생명주기 함수가 됩니다.
+
+* 컴포넌트가 계속 존재하는 것이 아니라 시간의 흐름에 따라 생성되고 업데이트되다가 사라진다는 것 입니다.
+
+  <details><summary>📚 마운트 </summary>
+
+    * 먼저, 컴포넌트가 생성되는 시점을 마운트 라고 부르는데, 이때 컴포넌트의 constructor(생성자)가 실행됩니다.
+    * componentDidMount()
+
+    <details><summary>📚 업데이트 </summary>
+   
+    * 리액트 컴포넌트도 생애 동안 변화를 겪으면서 여러번 렌더링 됩니다.
+    * 이를 리액트 컴포넌트로 말하면 업데이트 되는 과정이라고 할 수 있습니다.
+    * setState() 함수 호출에 의해 state가 변경될 때
+    * forceUpdate() 라는 강제 업데이트 함수가 호출될 때
+    * componentDidUpdate()
+    </details>
+
+    <details><summary>📚 언마운트 </summary>
+   
+    * 리액트 컴포넌트도 결국 언젠가 사라지는 과정을 겪게 되는데 이 과정을 언마운트 라고 합니다.
+    * 상위 컴포넌트에서 현재 컴포넌트를 더 이상 화면에 표시하지 않게 될 때 언마운트된다고 볼수있습니다.
+    * componentWillUnmount()
+    </details>
+  </details>
+</details>
+
 ---
 
 ## 5주차

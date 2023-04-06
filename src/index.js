@@ -6,6 +6,7 @@ import App from './App';
 import Clock from './chapter04/clock';
 import reportWebVitals from './reportWebVitals';
 import CommentList from './chapter05/js/CommentList';
+import NotificationList from './chapter06/js/NotificationList';
 
 
 const rootElement = document.getElementById('root');
@@ -17,6 +18,7 @@ root.render(
         <Route index element={<App />} />
         <Route path="clock" element={<Clock />} />
         <Route path="CommentList" element={<CommentList />} />
+        <Route path="NotificationList" element={<NotificationList />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
