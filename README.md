@@ -52,6 +52,7 @@
   * 이름에서 알 수 있듯이 state를 사용하기 위한 훅입니다.
   * 함수 컴포넌트에서는 기본적으로 state라는 것을 제공하지 않기 때문에 클래스 컴포넌트 처럼 state를 사용하지 않고 싶으면 useState() 훅을 사용해야 합니다.
   * 변수 각각에 대하여 set 함수가 따로 존재합니다.
+  * 서버에서 데이터를 받아오거나 수동으로 DOM을 변경하는 등의 작업을 의미합니다.
 
   * const [변수명, set함수명] = useState(초깃값);
 
@@ -86,6 +87,201 @@
   * useEffect()는 클래스 컴포넌트에서 제공하는 생명주기 함수인 componentDidMount(), componentDidUpdate() 그리고 componentWillUnmount()와 동일한 기능을 하나로 통합해서 제공합니다.
 
   * useEffect(이펙트 함수, 의존성 배열);
+
+  * 첫 번째 파라미터는 이펙트 함수가 들어가고, 두 번째 파라미터로는 의존성 배열이 들어갑니다.
+  * 의존성 배열은 이펙트가 의존하고 있는 배열로, 배열 안에 있는 변수 중에 하나라도 값이 변경되었을 때 이펙트 함수가 실행됩니다.
+  * 이펙트 함수는 처음 컴포넌트가 렌더링 된 이후, 그리고 재 렌더링 이후에 실행됩니다.
+  * 만약 이펙트 함수가 마운트와 언마운트 될 때만 한 번씩 실행되게 하고 싶으면 빈 배열을 넣으면 됩니다. 이 경우 props나 state에 있는 어떤 값에도 의존하지 않기 때문에 여러 번 실행되지 않습니다.
+
+  ```jsx
+
+  import React, { useState, useEffect } from "react";
+
+  function Counter(props){
+    const [isOnline, setIsOnline] = useState(null);
+
+    function handleStatusChange(status){
+        setIsOnline(status.isOnline);
+    }
+
+    useEffect( () => {
+        ServerAPI.subscribeUserStatus(props.user.id, handleStatusChange);
+        return () => {
+            ServerAPI.unsubscribeUserStatus(props.user.id, handleStatusChange);
+        };
+    });
+
+    if (isOnline === null){
+        return "대기 중...";
+    }
+
+    return isOnline ? "온라인" : "오프라인";
+  }
+
+  export default Counter;
+
+  ```
+
+  </details>
+
+  <details><summary>📚 useMemo </summary>
+
+  * useMemo() 훅은 Memoized value를 리턴하는 훅입니다.
+  * 파라미터로 Memoized value를 생성하는 create 함수와 의존성 배열을 받습니다.
+  * useMemo()로 전달된 함수는 렌더링이 일어나는 동안 실행된다.
+  * 따라서 렌더링이 일어나는 동안 실행되어서는 안될 작업을 넣으면 안됩니다.
+
+  ```jsx
+
+  const memoizedValue = useMemo(
+    () => {
+      return computeExpensiveValue(의존성 변수1, 의존성 변수2);
+    },
+    [의존성 변수1, 의존성 변수2]
+  );
+
+  ```
+
+  ```jsx
+
+  const memoizedValue = useMemo(
+    () => computeExpensiveValue(a, b);
+  )
+
+  ```
+
+  </details>
+
+  <details><summary>📚 esline-plugin-react-hooks 패키지 </summary>
+
+  * useMemo() 에서 의존성 배열에 넣은 변수들은 create 함수의 파라미터로 전달 되지 않습니다.
+  * 하지만 useMemo()의 원래의 의미가 의존성 배열에 있는 변수 중 하나라도 변하면 create 함수를 다시 호출하는 것이기 때문에 create 함수에서 참조하는 모든 변수를 의존성 배열에 넣어 주는 것이 맞습니다.
+
+ * https://www.npmjs.com/package/eslint-plugin-react-hooks
+
+  </details>
+
+   <details><summary>📚 useCallback </summary>
+
+  * useCallback() 훅은 이전에 나온 useMemo() 훅과 유사한 역할을 합니다.
+  * 한 가지 차이점은 값이 아닌 함수를 반환한다는 점 입니다.
+
+  ```jsx
+
+  const memoizedCallback = useCallback(
+    () => {
+      doSomething(의존성 변수1, 의존성 변수2);
+    }.
+    [의존성 변수1, 의존성 변수2]
+  );
+
+  ```
+
+  </details>
+
+  <details><summary>📚 메모이제이션 </summary>
+
+  * useMemo()와 useCallback() 훅에서는 메모이제이션이라는 개념이 나옵니다.
+  * 컴퓨터 분야에서 메모이제이션은 최적화를 위해 사용하는 개념입니다.
+  * 비용이 높은( 연산량이 많이 드는 )함수의 호출 결과를 저장해 두었다가, 같은 입력값으로 함수를 호출하면 새로 함수를 호출하지 않고 이전에 저장해두었던 호출 결과를 바로 반환하는 것 입니다.
+  * 이렇게 하면 결과적으로 함수 호출 결과를 받기까지 걸리는 시간도 짧아질뿐더러 불필요한 중복 연산도 하지 않기 때문에 컴퓨터의 자원을 적게 소모합니다.
+
+  </details>
+
+  <details><summary>📚 useRef </summary>
+
+  * useRef() 훅은 레퍼런스를 사용하기 위한 훅입니다.
+  * 리액트에서 레퍼런스란 특정 컴포넌트에 접근할 수 있는 객체를 의미합니다.
+  * useRef() 훅은 바로 레퍼런스 객체를 반환합니다.
+  * useRef()훅은 변경 가능한.current 라는 속성을 가진 하나의 상자입니다.
+  * useRef()훅은 매번 렌더링 될 때마다 항상 같은 ref 객체를 반환합니다.
+
+  * const refContainer = useRef(초깃값);
+
+  </details>
+
+  <details><summary>📚 callback ref </summary>
+
+  * DOM node의 변화를 알기위한 가장 기초적인 방법으로 callback ref를 사용하는 것이 있습니다.
+  * 리액트는 ref가 다른 node에 연결될 때 마다 콜백을 호출하게 됩니다.
+
+  ```jsx
+
+  function MeasureExample(props){
+    const [height, setHeight] = useState(0);
+
+    const measuredRef = useCallback(node => {
+      if(node !== null){
+        setHeight(node.getBoundingClientRect().height);
+      }
+    }, []);
+
+    return(
+      <>
+        <h1 ref={measuredRef}>안녕, 리액트</h1>
+        <h2>위 헤더의 높이는 {Math.round(height)}px 입니다.</h2>
+      </>
+    )
+  }
+
+  ```
+
+  </details>
+
+  <details><summary>📚 훅의 규칙 </summary>
+
+  * 첫 번째 규칙은 훅은 무조건 최상위 레벨에서만 호출해야 합니다.
+  * 따라서 반복문이나 조건문 또는 중첩된 함수들 안에서 훅을 호출하면 안 된다. 라는 뜻 입니다.
+  * 이 규칙에 따라서 훅은 컴포넌트가 렌더링 될 때마다 매번 같은 순서로 호출 되어야 합니다.
+
+  * 두 번째 규칙은 리액트 함수 컴포넌트에서만 훅을 호출해야 한다는 것 입니다.
+  * 훅은 리액트 함수 컴포넌트에서 호출하거나 직접 만든 커스텀 훅에서만 호출할 수 있습니다.
+
+  </details>
+
+  <details><summary>📚 나만의 훅 만들기 </summary>
+
+  * 리액트에서 기본적으로 제공하는 훅들 이외에 추가적으로 필요한 기능이 있다면 직접 훅을 만들어서 사용할 수 있습니다. 이것을 커스텀 훅이라고 부르는데 커스텀 훅을 만드는 이유는 여러 컴포넌트에서 반복적으로 사용되는 로직을 훅으로 만들어 재사용하기 위함입니다.
+
+  * 커스텀 훅은 무언가 특별한 것이 아니라 이름이 use로 시작하고 내부에서 다른 훅을 호출하는 하나의 자바스크립트 함수입니다.
+  
+  * 커스텀 훅은 리액트 기능이 아닌 훅의 디자인에서 자연스럽게 따르는 규칙입니다.
+  * 만약 이름이 use로 시작하지 않는다면 특정 함수의 내부에서 훅을 호출하는지 알 수 없기 때문에 훅의 일반 규칙 위반 여부를 자동으로 확인할 수 없습니다.
+
+  </details>
+
+  <details><summary>📚 훅들 사이에서 데이터를 공유하는 방법 </summary>
+
+  ```jsx
+
+  const userList = [
+    { id: 1, name: 'Inje' },
+    { id: 2, name: 'Inje' },
+    { id: 3, name: 'Inje' },
+  ];
+
+  function ChatUserSelector(props){
+    const [userId, setUserId] = useState(1);
+    const isUserOnline = useUserStatus(userId);
+
+    return(
+      <>
+        <Circle color={isUserOnline ? 'green' : 'red'} />
+        <select
+          value={userId}
+          onchange={event => setUserId(Number(event.target.value))}
+         >
+         {userList.map(user => (
+          <option key={user.id} value={user.id}>
+            {user.name}
+         </option>
+         ))}
+        </select>
+      </>
+    );
+  }
+
+  ```
 
   </details>
 
