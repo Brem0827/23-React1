@@ -25,12 +25,71 @@
 <!-- main 영역 -->
 
 ## 강의 목록
-1. [6주차](#6주차)➡️
-2. [5주차](#5주차)➡️
-3. [4주차](#4주차)➡️
-4. [3주차](#3주차)➡️
-5. [2주차](#2주차)➡️
-6. [1주차](#1주차)➡️
+1. [7주차](#7주차)➡️
+2. [6주차](#6주차)➡️
+3. [5주차](#5주차)➡️
+4. [4주차](#4주차)➡️
+5. [3주차](#3주차)➡️
+6. [2주차](#2주차)➡️
+7. [1주차](#1주차)➡️
+
+---
+
+## 7주차
+
+* 04/13
+
+<details><summary>📖 hook </summary>
+
+* 원래 존재하는 어떤 기능에 마치 갈고리를 거는 것처럼 끼어 들어가 같이 수행 되는 것
+* 리액트의 state와 생명주기 기능에 갈고리를 걸어 원하는 시점에 정해진 함수를 실행되도록 만든 것
+* 함수형 컴포넌트에서도 state나 생명주기 함수의 기능을 사용하게 해주기 위해 추가된 기능이 바로 훅입니다.
+* 함수형 컴포넌트도 훅을 사용하여 클래스형 컴포넌트의 기능을 모두 동일하게 구현 할 수 있게 되었습니다.
+* 훅의 이름은 모두 use로 시작합니다.
+
+  <details><summary>📚 useState </summary>
+
+  * 이름에서 알 수 있듯이 state를 사용하기 위한 훅입니다.
+  * 함수 컴포넌트에서는 기본적으로 state라는 것을 제공하지 않기 때문에 클래스 컴포넌트 처럼 state를 사용하지 않고 싶으면 useState() 훅을 사용해야 합니다.
+  * 변수 각각에 대하여 set 함수가 따로 존재합니다.
+
+  * const [변수명, set함수명] = useState(초깃값);
+
+  ```jsx
+
+  import React, { useState } from "react";
+
+  function Counter(props){
+      const [count, setCount] = useState(0);
+
+      return(
+          <div>
+              <p>총 {count}번 클릭했습니다.</p>
+              <button onClick={() => setCount(count + 1)}> 클릭 </button>
+          </div>
+      );
+  }
+
+  export default Counter;
+
+  ```
+
+  </details>
+
+  <details><summary>📚 useEffect </summary>
+
+  * useEffect()는 사이드 이펙트를 수행하기 위한 훅입니다.
+  * 사이드 이펙트는 사전적으로 부작용 이라는 뜻을 갖고 있습니다.
+  * 리액트에서 말하는 사이드 이펙트는 그냥 효과 혹은 영향을 뜻하는 이펙트에 가깝습니다.
+
+  * useEffect() 는 리액트의 함수 컴포넌트에서 사이드 이펙트를 실행할 수 있도록 해주는 훅 입니다.
+  * useEffect()는 클래스 컴포넌트에서 제공하는 생명주기 함수인 componentDidMount(), componentDidUpdate() 그리고 componentWillUnmount()와 동일한 기능을 하나로 통합해서 제공합니다.
+
+  * useEffect(이펙트 함수, 의존성 배열);
+
+  </details>
+
+</details>
 
 ---
 
