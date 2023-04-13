@@ -157,7 +157,7 @@
   * useMemo() 에서 의존성 배열에 넣은 변수들은 create 함수의 파라미터로 전달 되지 않습니다.
   * 하지만 useMemo()의 원래의 의미가 의존성 배열에 있는 변수 중 하나라도 변하면 create 함수를 다시 호출하는 것이기 때문에 create 함수에서 참조하는 모든 변수를 의존성 배열에 넣어 주는 것이 맞습니다.
 
- * https://www.npmjs.com/package/eslint-plugin-react-hooks
+  * https://www.npmjs.com/package/eslint-plugin-react-hooks
 
   </details>
 
