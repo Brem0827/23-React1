@@ -325,6 +325,37 @@
 
   </details>
 
+  <details><summary>📘 JS의 Truthy와 Falsy </summary>
+
+  * 보통의 프로그래밍 언어에서는 참, 거짓을 구분하기 위해 Boolean 형태의 자료형이 존재하고, 그 값은 true와 false 둘 중 하나가 됩니다.
+  * 그리고 boolean과 자료형아 다른 값을 비교하게 되면 오류가 발생하게 됩니다.
+  * JS에서 true는 아니지만 true로 여겨지는 값이 truthy입니다.
+  * JS에서 false는 아니지만 false로 여겨지는 값이 falsy입니다.
+
+    <details><summary>📘 Truthy </summary>
+
+      * true
+      * {} (empty object)
+      * [] (empty array)
+      * 42 (number, not zero)
+      * "0", "false" (string, not empty)
+
+    </details>
+
+    <details><summary>📘 Falsy </summary>
+
+      * false
+      * 0, -0 (zero, minus zero)
+      * 0n (BigInt zero)
+      * '', "", `` (empty string)
+      * null
+      * undefined
+      * NaN (not a Number)
+
+    </details>
+
+  </details>
+
   <details><summary>📘 엘리먼트 변수 </summary>
 
   * 리액트 엘리먼트를 변수처럼 지정해서 사용하는 방법
