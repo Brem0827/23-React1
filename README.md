@@ -150,10 +150,6 @@
         }
     }
 
-    ```
-
-    ```jsx
-
     import React from "react";
 
     function Toggle(props){
@@ -178,6 +174,14 @@
 
   </details>
 
+  <details><summary>📚 카멜 표기법 </summary>
+
+  * 사막에 있는 낙타의 등 모양을 보고 이름을 지은 것
+  * 카멜 표기법은 첫 글자는 소문자로 시작하되, 중간에 나오는 새로운 단어의 첫 글자를 대문자로 사용한 방법입니다.
+  * 글자의 크기가 변하는게 마치 나타의 등과 같다고 해서 카멜 표기법으로 이름이 지어졌습니다.
+
+  </details>
+
   <details><summary>📚 Arguments 전달하기 </summary>
 
     <details><summary>📘 Arguments란? </summary>
@@ -197,6 +201,84 @@
     <details><summary>📘 클래스 컴포넌트 </summary>
 
     * 이벤트 핸들러 호출 시 원하는 순서대로 매개변수를 넣어서 사용
+        
+    </details>
+
+    <details><summary>📘 MyButton 코드 </summary>
+
+    ```jsx
+    
+    import React from "react";
+
+    function MyButton(props){
+        const handleDelete = (id, event)  =>  {
+            console.log(id, event.target);
+        };
+
+        return(
+            <button onClick={(event) => handleDelete(1, event)}>
+                삭제하기
+            </button>
+        )
+    }
+
+    ```
+        
+    </details>
+
+    <details><summary>📘 클릭 이벤트 처리하기 실습 코드  </summary>
+
+      ```jsx
+
+      import React from "react";
+
+      function ConfirmButton(props){
+          const [isConfirmed, setIsConfirmed] = useState(false);
+
+          const handleConfirm = () => {
+              setIsConfirmed((prevIsConfirmed) => !prevIsConfirmed);
+          };
+
+          return(
+              <button onClick={handleConfirm} disabled={isConfirmed}>
+                  {isConfirmed ? "확인됨" : "확인하기"}
+              </button>
+          );
+      }
+
+      /*
+      class ConfirmButton extends React.Component{
+          constructor(props){
+              super(props);
+
+              this.state = {
+                  isConfirmed : false,
+              };
+
+              this.handleConfirm = this.handleConfirm.bind(this);
+          }
+
+          handleConfirm(){
+              this.setState((prevState) => ({
+                  isConfirmed: !prevState.isConfirmed,
+              }));
+          }
+
+          render(){
+              return(
+                  <button 
+                  onClick={this.handleConfirm} 
+                  disabled={this.state.isConfirmed} >
+                      {this.state.isConfirmed ? "확인됨" : "확인하기"}
+                  </button>
+              );
+          }
+      }
+      */
+
+      export default ConfirmButton;
+
+      ```
         
     </details>
 
