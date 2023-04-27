@@ -362,6 +362,66 @@
 
   </details>
 
+  <details><summary>📘 LoginButton 코드 </summary>
+
+    ```jsx
+
+      function LoginButton(props){
+        return(
+            <button onClick={props.onClick}>
+                로그인
+            </button>
+        );
+    }
+
+    function LogoutButton(props){
+        return(
+            <button onClick={props.onClick}>
+                로그아웃
+            </button>
+        );
+    }
+
+    ```
+
+  </details>
+
+  <details><summary>📘 LoginControl 코드 </summary>
+
+    ```jsx
+
+    import React from "react";
+
+    function LoginControl(props){
+        const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+        const handleLoginClick = () => {
+            setIsLoggedIn(true);
+        }
+
+        const handleLogoutClick = () => {
+            setIsLoggedIn(false);
+        }
+
+        let button;
+        if(isLoggedIn){
+            button = <LogoutButton onClick={handleLoginClick} />;
+        }else{
+            button = <LoginButton onClick={handleLoginClick} />;
+        }
+
+        return(
+            <div>
+                <Greeting isLoggedIn={isLoggedIn} />
+                {button}
+            </div>
+        )
+    }
+
+    ```
+
+  </details>
+
   <details><summary>📘 인라인 조건 </summary>
 
   * 조건문을 코드 안에 집어 넣는 것
