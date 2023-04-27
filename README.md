@@ -634,6 +634,38 @@
 
 </details>
 
+<details><summary>📘 리스트와 키 </summary>
+
+  <details><summary>📖 리스트 </summary>
+
+  * 같은 아이템을 순서대로 모아놓은 것
+
+  </details>
+
+  <details><summary>📖 키 </summary>
+
+  * 각 객체나 아이템을 구분할 수 있는 고유한 값
+
+  </details>
+
+  <details><summary>📖 여러 개의 컴포넌트 렌더링 </summary>
+
+  * 자바스크립트 배열의 map() 함수를 사용
+  * 배열에 들어있는 각 변수에 어떤 처리를 한 뒤 결과(엘리먼트)를 배열로 만들어서 리턴
+  * map() 함수 안에 있는 엘리먼트는 꼭 키가 필요함
+
+  </details>
+
+  <details><summary>📖 리스트의 키 </summary>
+
+  * 리스트에서 아이템을 구분하기 위한 고유한 문자열
+  * 리스트에서 어떤 아이템이 변경, 추가 또는 제거되었는지 구분하기 위해 사용
+  * 리액트에서는 키의 값은 같은 리스트에 있는 엘리먼트 사이에서만 고유한 값이면 됨
+
+  </details>
+
+</details>  
+
 ---
 
 ## 7주차
