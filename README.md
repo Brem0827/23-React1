@@ -25,13 +25,106 @@
 <!-- main 영역 -->
 
 ## 강의 목록
-1. [7주차](#7주차)➡️
-2. [6주차](#6주차)➡️
-3. [5주차](#5주차)➡️
-4. [4주차](#4주차)➡️
-5. [3주차](#3주차)➡️
-6. [2주차](#2주차)➡️
-7. [1주차](#1주차)➡️
+1. [9주차](#9주차)➡️
+2. [7주차](#7주차)➡️
+3. [6주차](#6주차)➡️
+4. [5주차](#5주차)➡️
+5. [4주차](#4주차)➡️
+6. [3주차](#3주차)➡️
+7. [2주차](#2주차)➡️
+8. [1주차](#1주차)➡️
+
+---
+
+## 7주차
+
+* 04/27
+
+<details><summary>📖 이벤트 핸들링 </summary>
+
+  <details><summary>📚 이벤트란? </summary>
+
+  * 사용자가 버튼을 클릭하는 등의 사건을 의미
+  * DOM에서는 클릭 이벤트를 처리할 함수를 onclick을 통해서 전달합니다.
+
+  </details>
+
+  <details><summary>📚 이벤트 처리하기 </summary>
+
+    <details><summary>📘 DOM의 이벤트 </summary>
+
+    * 이벤트의 이름을 모두 소문자로 표기
+    * 이벤트를 처리할 함수를 문자열로 전달
+    
+    </details>
+
+    <details><summary>📘 리액트의 이벤트 </summary>
+
+    * 이벤트의 이름을 카멜 표기법으로 표기
+    * 이벤트를 처리할 함수를 그대로 전달
+    
+    </details>
+
+    <details><summary>📘 둘의 차이점 </summary>
+
+    * 이벤트 이름이 onclick 에서 onClick으로 변경(Camel case)
+    * 전달하려는 함수는 문자열에서 함수 그대로 전달
+    
+    </details>
+
+    <details><summary>📘 이벤트 핸들러 </summary>
+
+    * 이벤트가 발생했을 때 해당 이벤트를 처리하는 함수
+    * 이벤트 리스너 라고 부르기도 함
+
+    ```jsx
+    
+    import React from "react";
+
+    class Toggle extends React.Component{
+        constructor(props){
+            super(props);
+
+            this.state = { isToggleOn : true };
+
+            this.handleClick = this.handleClick.bind(this);
+        }
+
+        handleClick(){
+            this.setState(prevState = ({
+                isToggleOn: !prevState.isToggleOn
+            }));
+        }
+
+        render(){
+            return(
+                <button onClick={this.handleClick}>
+                    {this.state.isToggleOn ? '켜짐' : '꺼짐'}
+                </button>
+            );
+        }
+    }
+
+    ```
+
+      <details><summary>📘 클래스 컴포넌트 </summary>
+
+      * 클래스의 함수로 정의하고 생성자에서 바인딩해서 사용
+      * 클래스 필드 문법도 사용가능
+      
+      </details>
+
+      <details><summary>📘 함수 컴포넌트 </summary>
+
+      * 함수 안에 함수로 정의하거나 arrow function을 사용하여 정의
+      
+      </details>
+    
+    </details>
+
+  </details>
+
+</details>
 
 ---
 
