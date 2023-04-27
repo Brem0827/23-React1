@@ -79,35 +79,24 @@
 
       <details><summary>📘 이벤트 핸들러 코드 </summary>
 
-      ```jsx
-      
-      import React from "react";
+        ```jsx
 
-      class Toggle extends React.Component{
-          constructor(props){
-              super(props);
+        import React, { useState } from "react";
 
-              this.state = { isToggleOn : true };
+        function Counter(props){
+            const [count, setCount] = useState(0);
 
-              this.handleClick = this.handleClick.bind(this);
-          }
+            return(
+                <div>
+                    <p>총 {count}번 클릭했습니다.</p>
+                    <button onClick={() => setCount(count + 1)}> 클릭 </button>
+                </div>
+            );
+        }
 
-          handleClick(){
-              this.setState(prevState = ({
-                  isToggleOn: !prevState.isToggleOn
-              }));
-          }
+        export default Counter;
 
-          render(){
-              return(
-                  <button onClick={this.handleClick}>
-                      {this.state.isToggleOn ? '켜짐' : '꺼짐'}
-                  </button>
-              );
-          }
-      }
-      
-      ```
+        ```
 
       </details>
 
