@@ -77,29 +77,6 @@
     * 이벤트가 발생했을 때 해당 이벤트를 처리하는 함수
     * 이벤트 리스너 라고 부르기도 함
 
-      <details><summary>📘 이벤트 핸들러 코드 </summary>
-
-        ```jsx
-
-        import React, { useState } from "react";
-
-        function Counter(props){
-            const [count, setCount] = useState(0);
-
-            return(
-                <div>
-                    <p>총 {count}번 클릭했습니다.</p>
-                    <button onClick={() => setCount(count + 1)}> 클릭 </button>
-                </div>
-            );
-        }
-
-        export default Counter;
-
-        ```
-
-      </details>
-
       <details><summary>📘 클래스 컴포넌트 </summary>
 
       * 클래스의 함수로 정의하고 생성자에서 바인딩해서 사용
