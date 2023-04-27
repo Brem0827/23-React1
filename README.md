@@ -286,6 +286,83 @@
 
 </details>
 
+<details><summary>📚 조건부 렌더링 </summary>
+
+  <details><summary>📘 조건부 렌더링 </summary>
+
+  * 조건에 따라 렌더링의 결과가 달라지도록 하는 것
+
+  </details>
+
+  <details><summary>📘 조건부 렌더링 코드 </summary>
+
+  ```jsx
+
+  function UserGreeting(props){
+    return <h1>다시 오셨군요!</h1>
+  }
+
+  function GuestGreeting(props){
+    return <h1>회원가입을 해 주세요</h1>
+
+  ```
+
+  </details>
+
+  <details><summary>📘 조건부 렌더링 코드 II </summary>
+
+  ```jsx
+
+  function Greeting(props){
+    const isLoggedIn = props.isLoggedIn;
+    if(isLoggedIn){
+        return <UserGreeting />;
+    }
+    return <GuestGreeting />;
+  }
+
+  ```
+
+  </details>
+
+  <details><summary>📘 엘리먼트 변수 </summary>
+
+  * 리액트 엘리먼트를 변수처럼 지정해서 사용하는 방법
+
+  </details>
+
+  <details><summary>📘 인라인 조건 </summary>
+
+  * 조건문을 코드 안에 집어 넣는 것
+
+    <details><summary>📘 인라인 IF </summary>
+
+    * if문을 필요한 곳에 직접 집어넣어서 사용하는 방법
+    * 논리 연산자 &&를 사용 (AND연산)
+    * 앞에 나오는 조건문이 true일 경우에만 뒤에 나오는 엘리먼트를 렌더링
+
+    </details>
+
+    <details><summary>📘 인라인 IF~Else </summary>
+
+    * if - Else문을 필요한 곳에 직접 집어넣어서 사용하는 방법
+    * 삼항 연산자 ?를 사용
+    * 앞에 나오는 조건문이 true이면 첫 번째 항목을 리턴, false면 두 번째 항목을 리턴
+    * 조건에 따라 각기 다른 엘리먼트를 렌더링 하고 싶을 때 사용
+
+    </details>
+
+  </details>
+
+  <details><summary>📘 컴포넌트 렌더링 막기 </summary>
+
+  * 리액트에서는 null을 리턴하면 렌더링 되지 않음 
+  * 특정 컴포넌트를 렌더링 하고 싶지 않을 경우 null을 리턴
+
+  </details>
+
+</details>
+
 ---
 
 ## 7주차
