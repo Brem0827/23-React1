@@ -294,7 +294,7 @@
 
   </details>
 
-  <details><summary>📘 조건부 렌더링 코드 </summary>
+  <details><summary>📝 조건부 렌더링 코드 </summary>
 
   ```jsx
 
@@ -309,7 +309,7 @@
 
   </details>
 
-  <details><summary>📘 조건부 렌더링 코드 II </summary>
+  <details><summary>📝 조건부 렌더링 코드 II </summary>
 
   ```jsx
 
@@ -362,7 +362,7 @@
 
   </details>
 
-  <details><summary>📘 LoginButton 코드 </summary>
+  <details><summary>📝 LoginButton 코드 </summary>
 
     ```jsx
 
@@ -386,7 +386,7 @@
 
   </details>
 
-  <details><summary>📘 LoginControl 코드 </summary>
+  <details><summary>📝 LoginControl 코드 </summary>
 
     ```jsx
 
@@ -426,7 +426,7 @@
 
   * 조건문을 코드 안에 집어 넣는 것
 
-    <details><summary>📘 MailBox 코드 </summary>
+    <details><summary>📝 MailBox 코드 </summary>
 
       ```jsx
 
@@ -451,7 +451,7 @@
 
     </details>
 
-    <details><summary>📘 LoginControl 코드 </summary>
+    <details><summary>📝 LoginControl 코드 </summary>
 
       ```jsx
 
@@ -507,7 +507,94 @@
   * 리액트에서는 null을 리턴하면 렌더링 되지 않음 
   * 특정 컴포넌트를 렌더링 하고 싶지 않을 경우 null을 리턴
 
+    <details><summary>📝 WarningBanner 코드 </summary>
+
+     ```jsx
+
+    import React from "react";
+
+    function WarningBanner(props){
+        if(!props.warning){
+            return null;
+        }
+
+        return(
+            <div>경고!</div>
+        );
+    }
+
+     ```
+
+    </details>
+
+    <details><summary>📝 MainPage 코드 </summary>
+
+     ```jsx
+
+    import React from "react";
+
+    function MainPage(props){
+        const [showWarning, setShowWarning] = useState(false);
+
+        const handleToggleClick = () => {
+            setShowWarning(prevShowWarning => !prevShowWarning);
+        }
+
+        return(
+            <div>
+                <WarningBanner warning={showWarning} />
+                <button onClick={handleToggleClick}>
+                    {showWarning ? '감추기' : '보이기'}
+                </button>
+            </div>
+        )
+    }
+
+     ```
+
+    </details>
+
   </details>
+
+  <details><summary>📝 Toolbar 코드 </summary>
+
+     ```jsx
+
+    import React from "react";
+
+    const styles = {
+        wrapper : {
+            padding : 16,
+            display : "flex",
+            flexDirection : "row",
+            borderBottom : "1px solid grey",
+        },
+        greeting: {
+            marginRight : 8,
+        },
+    };
+
+    function Toolbar(props){
+        const { isLoggedIn, onClickLogin, onClickLogout } = props;
+
+        return(
+            <div style={styles.wrapper}>
+                {isLoggedIn && <span style={styles.greeting}>환영합니다!</span>}
+
+                {isLoggedIn ? (
+                    <button onClick={onClickLogout}>로그아웃</button>
+                ) : (
+                    <button onClick={onClickLogin}>로그인</button>
+                )}
+            </div>
+        );
+    }
+
+    export default Toolbar;
+
+     ```
+
+    </details>
 
 </details>
 
