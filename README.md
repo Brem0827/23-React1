@@ -124,6 +124,84 @@
     
   </details>
 
+  <details><summary>📚 bind를 하는 이유 </summary>
+
+  * 기본적으로 클래스 함수들이 바운드(bound)가 되지 않기 때문
+
+  </details>
+
+  <details><summary>📚 클래스 필드 문법 코드 </summary>
+
+    ```jsx
+
+    import React from "react";
+
+    class MyButton extends React.Component{
+        handleClick = () => {
+            console.log('this is : ', this);
+        }
+
+        render(){
+            return(
+                <button onClick={this.handleClick}>
+                    클릭
+                </button>
+            )
+        }
+    }
+
+    ```
+
+    ```jsx
+
+    import React from "react";
+
+    function Toggle(props){
+        const [isToggleOn, setIsToggleOn] = useState(true);
+
+        function handleClick(){
+            setIsToggleOn((isToggleOn) => !isToggleOn);
+        }
+
+        const handleClick = () => {
+            setIsToggleOn((isToggleOn) => !isToggleOn);
+        }
+
+        return(
+            <button onClick={handleClick}>
+                {isToggleOn ? "켜짐" : "꺼짐"}
+            </button>
+        );
+    }
+
+    ```
+
+  </details>
+
+  <details><summary>📚 Arguments 전달하기 </summary>
+
+    <details><summary>📘 Arguments란? </summary>
+
+    * 함수에 전달할 데이터
+    * 파라미터 또는 매개변수 라고 부르기도 함
+    * 함수를 사용할 때에는 아귀먼트 또는 인자 라고 부릅니다.
+        
+    </details>
+
+    <details><summary>📘 클래스 컴포넌트 </summary>
+
+    * arrow function을 사용하거나 Function.prototype.bind를 사용해서 전달
+        
+    </details>
+
+    <details><summary>📘 클래스 컴포넌트 </summary>
+
+    * 이벤트 핸들러 호출 시 원하는 순서대로 매개변수를 넣어서 사용
+        
+    </details>
+
+  </details>
+
 </details>
 
 ---
