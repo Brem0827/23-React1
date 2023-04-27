@@ -77,35 +77,36 @@
     * 이벤트가 발생했을 때 해당 이벤트를 처리하는 함수
     * 이벤트 리스너 라고 부르기도 함
 
-    ```jsx
-    
-    import React from "react";
+      <details><summary>📘 이벤트 핸들러 코드 </summary>
+      ```jsx
+      
+      import React from "react";
 
-    class Toggle extends React.Component{
-        constructor(props){
-            super(props);
+      class Toggle extends React.Component{
+          constructor(props){
+              super(props);
 
-            this.state = { isToggleOn : true };
+              this.state = { isToggleOn : true };
 
-            this.handleClick = this.handleClick.bind(this);
-        }
+              this.handleClick = this.handleClick.bind(this);
+          }
 
-        handleClick(){
-            this.setState(prevState = ({
-                isToggleOn: !prevState.isToggleOn
-            }));
-        }
+          handleClick(){
+              this.setState(prevState = ({
+                  isToggleOn: !prevState.isToggleOn
+              }));
+          }
 
-        render(){
-            return(
-                <button onClick={this.handleClick}>
-                    {this.state.isToggleOn ? '켜짐' : '꺼짐'}
-                </button>
-            );
-        }
-    }
-
-    ```
+          render(){
+              return(
+                  <button onClick={this.handleClick}>
+                      {this.state.isToggleOn ? '켜짐' : '꺼짐'}
+                  </button>
+              );
+          }
+      }
+      ```
+      </details>
 
       <details><summary>📘 클래스 컴포넌트 </summary>
 
