@@ -556,7 +556,7 @@
 
   </details>
 
-    <details><summary>📝 Toolbar 코드 </summary>
+  <details><summary>📝 Toolbar 코드 </summary>
 
       ```jsx
 
