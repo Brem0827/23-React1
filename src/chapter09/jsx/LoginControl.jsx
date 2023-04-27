@@ -11,17 +11,13 @@ function LoginControl(props){
         setIsLoggedIn(false);
     }
 
-    let button;
-    if(isLoggedIn){
-        button = <LogoutButton onClick={handleLoginClick} />;
-    }else{
-        button = <LoginButton onClick={handleLoginClick} />;
-    }
-
     return(
         <div>
             <Greeting isLoggedIn={isLoggedIn} />
-            {button}
+            {isLoggedIn
+                ? <LogoutButton onClick={handleLoginClick} />
+                : <LoginButton onClick={handleLoginClick} />
+            }
         </div>
     )
 }

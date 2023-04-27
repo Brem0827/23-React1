@@ -426,6 +426,63 @@
 
   * 조건문을 코드 안에 집어 넣는 것
 
+    <details><summary>📘 MailBox 코드 </summary>
+
+      ```jsx
+
+      import React from "react";
+
+      function MailBox(props){
+          const unreadMessages = props.unreadMessages;
+
+          return(
+              <div>
+                  <h1>안녕하세요</h1>
+                  {unreadMessages.length > 0 &&
+                      <h2>
+                          현재 {unreadMessages.length}개의 읽지 않은 메세지가 있습니다.
+                      </h2>
+                  }
+              </div>
+          );
+      }
+      
+      ```
+
+    </details>
+
+    <details><summary>📘 LoginControl 코드 </summary>
+
+      ```jsx
+
+      import React from "react";
+
+      function LoginControl(props){
+          const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+          const handleLoginClick = () => {
+              setIsLoggedIn(true);
+          }
+
+          const handleLogoutClick = () => {
+              setIsLoggedIn(false);
+          }
+
+          return(
+              <div>
+                  <Greeting isLoggedIn={isLoggedIn} />
+                  {isLoggedIn
+                      ? <LogoutButton onClick={handleLoginClick} />
+                      : <LoginButton onClick={handleLoginClick} />
+                  }
+              </div>
+          )
+      }
+      
+      ```
+
+    </details>
+
     <details><summary>📘 인라인 IF </summary>
 
     * if문을 필요한 곳에 직접 집어넣어서 사용하는 방법
