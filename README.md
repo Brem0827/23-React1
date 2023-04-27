@@ -78,6 +78,7 @@
     * 이벤트 리스너 라고 부르기도 함
 
       <details><summary>📘 이벤트 핸들러 코드 </summary>
+
       ```jsx
       
       import React from "react";
@@ -105,7 +106,9 @@
               );
           }
       }
+      
       ```
+
       </details>
 
       <details><summary>📘 클래스 컴포넌트 </summary>
