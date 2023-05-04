@@ -137,8 +137,6 @@
 
   </details>
 
-  <details><summary>📖 다양한 키값의 사용법 </summary>
-
     <details><summary>📚 숫자 값을 사용 </summary>
 
     * 배열에 중복된 숫자가 들어있다면 키값도 중복되기 때문에 고유해야 한다는 키값의 조건이 충족되지 않음
@@ -190,7 +188,6 @@
 
     </details>
 
-  </details>
 
 </details>  
 
