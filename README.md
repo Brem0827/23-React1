@@ -188,6 +188,44 @@
 
   </details>
 
+</details>  
+
+<details><summary>📖 폼 </summary>
+
+  <details><summary>✅ 폼이란? </summary>
+
+  * 사용자로부터 입력을 받기 위해 사용하는 양식
+
+  </details> 
+
+  <details><summary>✅ 제어 컴포넌트 </summary>
+
+  * 사용자가 입력한 값에 접근하고 제어할 수 있게 해 주는 컴포넌트
+  * 값이 리액트의 통제르 받는 입력 폼 엘리먼트
+
+  </details> 
+
+  <details><summary>🖊️ <input type="text"> 태그 </summary>
+
+  * 한 줄로 텍스트를 입력받기 위한 HTML 태그
+  * 리액트에서는 value라는 arrtibute로 입력된 값을 관리
+
+  </details> 
+
+  <details><summary>🖊️ <textarea> 태그 </summary>
+
+  * 여러 줄에 걸쳐서 텍스트를 입력받기 위한 HTML 태그
+  * 리액트에서는 value라는 arrtibute로 입력된 값을 관리
+
+  </details> 
+
+  <details><summary>🖊️ <select> 태그 </summary>
+
+  * 드롭다운 목록을 보여주기 위한 HTML 태그
+  * 여러 가지 옵션 중에서 하나 또는 여러 개를 선택할 수 있는 기능을 제공
+  * 리액트에서는 value라는 arrtibute로 선택된 옵션의 값을 관리
+
+  </details> 
 
 </details>  
 
