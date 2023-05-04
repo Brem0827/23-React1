@@ -137,56 +137,56 @@
 
   </details>
 
-    <details><summary>📚 숫자 값을 사용 </summary>
+  <details><summary>📚 숫자 값을 사용 </summary>
 
-    * 배열에 중복된 숫자가 들어있다면 키값도 중복되기 때문에 고유해야 한다는 키값의 조건이 충족되지 않음
+  * 배열에 중복된 숫자가 들어있다면 키값도 중복되기 때문에 고유해야 한다는 키값의 조건이 충족되지 않음
 
-    ```jsx
+  ```jsx
 
-    const numbers = [1, 2, 3, 4, 5];
-    const listItems = numbers.map((number) => 
-        <li key={number.toString()}>
-            {number}
-        </li>
+  const numbers = [1, 2, 3, 4, 5];
+  const listItems = numbers.map((number) => 
+       <li key={number.toString()}>
+           {number}
+       </li>
     );
 
-    ```
+  ```
 
-    </details>
+  </details>
 
-    <details><summary>📚 id를 사용 </summary>
+  <details><summary>📚 id를 사용 </summary>
 
-    * id의 의미 자체가 고유한 값이므로 키값으로 사용하기 적합
-    * id가 있는 경우에는 보통 id값을 키값으로 사용
+  * id의 의미 자체가 고유한 값이므로 키값으로 사용하기 적합
+  * id가 있는 경우에는 보통 id값을 키값으로 사용
+  
+   ```jsx
 
-    ```jsx
-
-    const todoItems = todos.map((todo) =>
-        <li key={todo.id}>
-            {todo.text}
-        </li>
+  const todoItems = todos.map((todo) =>
+      <li key={todo.id}>
+          {todo.text}
+      </li>
     );
 
-    ```
+  ```
 
-    </details>
+  </details>
 
-    <details><summary>📚 인덱스를 사용 </summary>
+  <details><summary>📚 인덱스를 사용 </summary>
 
-    * 배열에서 아이템 순서가 바뀔수 있는 경우에는 키값으로 인덱스를 사용하는 것을 권장하지 않음
-    * 리액트에서는 키를 명시적으로 넣어 주지 않으면 기본적으로 이 인덱스 값을 키값으로 사용
+  * 배열에서 아이템 순서가 바뀔수 있는 경우에는 키값으로 인덱스를 사용하는 것을 권장하지 않음
+  * 리액트에서는 키를 명시적으로 넣어 주지 않으면 기본적으로 이 인덱스 값을 키값으로 사용
 
-    ```jsx
+  ```jsx
 
-    const todoItems = todos.map((todo, index) =>
-        <li key={index}>
-            {todo.text}
-        </li>
+  const todoItems = todos.map((todo, index) =>
+      <li key={index}>
+          {todo.text}
+      </li>
     );
 
-    ```
+  ```
 
-    </details>
+  </details>
 
 
 </details>  
