@@ -409,6 +409,101 @@
 
 </details>  
 
+<details><summary>📘 state 끌어올리기 </summary>
+
+  <details><summary>📘 shared State </summary>
+
+  * 하위 컴포넌트가 공통된 부모 컴포넌트의 state를 공유하여 사용하는 것
+
+  </details> 
+
+  <details><summary>🖊️ 하위 컴포넌트에서 state 공유하기 </summary>
+
+  * 물의 끓음 여부를 알려주는 컴포넌트
+
+  ```jsx
+
+  function BoilingVerdict(props){
+    if(props.celsius >= 100){
+        return <p>물이 끓습니다.</p>
+    }
+    return <p>물이 끓지 않습니다.</p>
+  }
+
+  ```
+
+  ```jsx
+
+  function Calculator(props){
+    const [ temperature, setTemperature ] = useState(" ");
+
+    const handleChange = (event) => {
+        setTemperature(event.target.value);
+    }
+
+    return(
+        <fieldset>
+            <legend>섭씨 온도를 입력하세요 </ legend>
+            <input
+                value={temperature}
+                onChange={handleChange} />
+                <BoilingVerdict
+                    celsius={parseFloat(temperature)} />
+        </fieldset>
+    )
+  }
+
+  ```
+
+  * 입력 컴포넌트 추출하기
+
+  ```jsx
+
+  const scaleNames = {
+    c : '섭씨',
+    f : '화씨'
+  };
+
+  function TemperatureInput(props){
+    const [ temperature, setTemperature ] = useState(' ');
+
+    const handleChange = (event) => {
+        setTemperature(event.target.value);
+    }
+
+    return(
+        <fieldset>
+            <legend>온도를 입력하세요 (단위 : {scaleNames[props.scale]}) </ legend>
+            <input value={temperature} onChange={handleChange} />
+        </fieldset>
+    )
+  }
+
+  ```
+
+  ```jsx
+
+  function Calculator(props){
+    return(
+        <div>
+            <TemPeratureInput scale="c" />
+            <TemPeratureInput scale="f" />
+        </div>
+    );
+  }
+
+  ```
+
+  </details> 
+
+  <details><summary>📘 state 끌어올리기 </summary>
+
+  * 하위 컴포넌트의 state를 공통된 부모 컴포넌트로 끌어올려서 공유하는 방식
+
+  </details> 
+
+</details>  
+
 ---
 
 ## 9주차
