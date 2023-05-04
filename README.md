@@ -215,6 +215,41 @@
   * 사용자가 입력한 값에 접근하고 제어할 수 있게 해 주는 컴포넌트
   * 값이 리액트의 통제르 받는 입력 폼 엘리먼트
 
+  ```jsx
+
+  function NameForm(props){
+    const [value, setValue] = useState(' ');
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    }
+
+    const handleSubmit = (event) => {
+        alert('입력한 이름 : ' + value);
+        event.preventDefault();
+    }
+
+    return(
+        <form>
+            <label>
+                이름 :
+                <input type="text" name="name" />
+            </label>
+            <button type="submit">제출</button>
+        </form>
+    )
+  }
+
+  ```
+
+  ```jsx
+
+  const handleChange = (event) => {
+        setValue(event.target.value.toUpperCase());
+    }
+
+  ```
+
   </details> 
 
   <details><summary>🖊️ input type="text" 태그 </summary>
@@ -229,6 +264,33 @@
   * 여러 줄에 걸쳐서 텍스트를 입력받기 위한 HTML 태그
   * 리액트에서는 value라는 arrtibute로 입력된 값을 관리
 
+  ```jsx
+
+  function RequestForm(props){
+    const [value, setValue] = useState('요청 사항을 입력하세요');
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    }
+
+    const handleSubmit = (event) => {
+        alert('입력한 요청 사항 : ' + value);
+        event.preventDefault();
+    }
+
+    return(
+        <form onSubmit={handleSubmit}>
+            <label>
+                이름 :
+                <textarea value={value} onChange={handleChange}  />
+            </label>
+            <button type="submit">제출</button>
+        </form>
+    )
+  }
+
+  ```
+
   </details> 
 
   <details><summary>🖊️ select 태그 </summary>
@@ -236,6 +298,38 @@
   * 드롭다운 목록을 보여주기 위한 HTML 태그
   * 여러 가지 옵션 중에서 하나 또는 여러 개를 선택할 수 있는 기능을 제공
   * 리액트에서는 value라는 arrtibute로 선택된 옵션의 값을 관리
+
+  ```jsx
+
+  function FruitSelect(props){
+    const [value, setValue] = useState('grape');
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    }
+
+    const handleSubmit = (event) => {
+        alert('선택한 과일 : ' + value);
+        event.preventDefault();
+    }
+
+    return(
+        <form onSubmit={handleSubmit}>
+            <label>
+                과일을 선택 하세요 :
+                <select value={value} onChange={handleChange}>
+                    <option value="apple">사과</option>
+                    <option value="banana">바나나</option>
+                    <option value="grape">포도</option>
+                    <option value="watermelon">수박</option>
+                </select>
+            </label>
+            <button type="submit">제출</button>
+        </form>
+    )
+  }
+
+  ```
 
   </details> 
 
