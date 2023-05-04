@@ -494,11 +494,115 @@
 
   ```
 
+  * 온도 변환 함수 작성하기
+
+  ```jsx
+
+  function toCelsius(fahrenheit){
+    return (fahrenheit - 32) * 5 / 9;
+  }
+
+  function toFahrenheit(celsius){
+    return (celsius * 5 / 9) - 32;
+  }
+
+  ```
+
+  ```jsx
+
+  function tryConvert(temperature, convert){
+    const input = parseFloat(temperature);
+    if(Number.isNaN(input)) {
+        return ' ';
+    }
+    const output = convert(input);
+    const rounded = Math.round(output * 1000) / 1000;
+    return rounded.toString();
+  }
+
+  ```
+
   </details> 
 
   <details><summary>📘 state 끌어올리기 </summary>
 
   * 하위 컴포넌트의 state를 공통된 부모 컴포넌트로 끌어올려서 공유하는 방식
+
+  ```jsx
+
+  return (
+    ...
+    // 변경 전 <input value={temperature} onChange={handleChange} />
+    <input value={props.temperature} onChange={handleChange} />
+    ...
+  )
+
+  ```
+
+  ```jsx
+
+  const handleChange = (event) => {
+    // 변경 전 setTemperature(event.target.value);
+    props.onTemperatureChange(event.target.value);
+  }
+
+  ```
+
+  ```jsx
+
+  function TemperatureInput(props){
+    const handleChange = (event) => {
+    props.onTemperatureChange(event.target.value);
+  }
+
+    return(
+        <fieldset>
+            <legend>온도를 입력하세요 (단위 : {scaleNames[props.scale]}) </ legend>
+            <input value={temperature} onChange={handleChange} />
+        </fieldset>
+    )
+  }
+
+  ```
+
+  * Calculator 컴포넌트 변경하기
+
+  ```jsx
+
+  function Calculator(props){
+    const [ temperature, setTemperature ] = useState(' ');
+    const [ scale, setScale ] = useState('c');
+
+    const handleCelsiusChange = (temperature) => {
+        setTemperature(temperature);
+        setScale('c');
+    }
+
+    const handleFahrenheitChange = (temperature) => {
+        setTemperature(temperature);
+        setScale('f');
+    }
+
+    const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature ;
+    const fahrenheit = scale === 'f' ? tryConvert(temperature, toFahrenheit) : temperature ;
+
+    return(
+        <div>
+            <TemperatureInput
+                scale="c"
+                temperature={celsius}
+                onTemperatureChange={handleCelsiusChange} />
+            <TemperatureInput
+                scale="f"
+                temperature={celsius}
+                onTemperatureChange={handleFahrenheitChange} />
+            <BoilingVerdict
+                    celsius={parseFloat(celsius)} />
+        </div>
+    )
+  }
+
+  ```
 
   </details> 
 
