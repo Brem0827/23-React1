@@ -345,11 +345,65 @@
 
   * 컴포넌트에 여러 개의 state를 선언하여 각각의 입력에 대해 사용하면 됨
 
+  ```jsx
+
+  function Reservation(props){
+    const [haveBreakFast, sethaveBreakFast ] = useState(true);
+    const [numberOfGuest, setnumberOfGuest ] = useState(2);
+
+    const handleSubmit = (event) => {
+        alert(`아침식사 여부 : ${haveBreakFast}, 방문객 수 ${numberOfGuest}`);
+        event.preventDefault();
+    }
+
+    return(
+        <form onSubmit={handleSubmit}>
+            <label>
+                아침식사 여부 :
+                <input
+                    type="checkbox"
+                    checked={haveBreakFast}
+                    onChange={(event) => {
+                        sethaveBreakFast(event.target.checked);
+                    }}/>
+                </label>
+                <br />
+            <label>
+                방문객 수 :
+                <input
+                    type="number"
+                    checked={numberOfGuest}
+                    onChange={(event) => {
+                        setnumberOfGuest(event.target.checked);
+                    }}/>
+                </label>
+                <br />
+            <button type="submit">제출</button>
+        </form>
+    )
+  }
+
+  ```
+
   </details>
 
   <details><summary>🖊️ Input Null Value </summary>
 
   * value prop은 넣되 자유롭게 입력할 수 있게 만들고 싶을 경우, 값에 undefined 또는 null을 넣으면 됨
+
+  ```jsx
+
+  ReactDOM.render(
+    <input value="h1" /> , rootNode
+  );
+
+  setTimeout(
+    function() {
+        ReactDOM.render(
+            <input value={null} /> , rootNode ); 
+            }, 1000);
+
+  ```
 
   </details>
 
