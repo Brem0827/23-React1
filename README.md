@@ -77,7 +77,55 @@
 
   ```
 
-  
+  ```jsx
+
+  ReactDOM.render(
+    <ul>{listItems}</ul>,
+    document.getElementById('root')
+  );
+
+  ```
+
+  ```jsx
+
+  ReactDOM.render(
+    <ul>
+        <li>{1}</li>
+        <li>{2}</li>
+        <li>{3}</li>
+        <li>{4}</li>
+        <li>{5}</li>
+    </ul>,
+    document.getElementById('root')
+  )
+
+  ```
+
+  </details>
+
+  <details><summary>📖 기본적인 리스트 컴포넌트 </summary>
+
+  ```jsx
+
+  function NumberList(props){
+    const { numbers } = props;
+
+    const listItems = numbers.map((number) => 
+        <li>{number}</li>
+    );
+
+    return(
+        <ul>{listItems}</ul>
+    );
+  }
+
+  const numbers = [1, 2, 3, 4, 5];
+  ReactDOM.render(
+    <NumberList numbers={numbers} />,
+    document.getElementById('root')
+  );
+
+  ```
 
   </details>
 
@@ -86,6 +134,61 @@
   * 리스트에서 아이템을 구분하기 위한 고유한 문자열
   * 리스트에서 어떤 아이템이 변경, 추가 또는 제거되었는지 구분하기 위해 사용
   * 리액트에서는 키의 값은 같은 리스트에 있는 엘리먼트 사이에서만 고유한 값이면 됨
+
+  </details>
+
+  <details><summary>📖 다양한 키값의 사용법 </summary>
+
+    <details><summary>📚 숫자 값을 사용 </summary>
+
+    * 배열에 중복된 숫자가 들어있다면 키값도 중복되기 때문에 고유해야 한다는 키값의 조건이 충족되지 않음
+
+    ```jsx
+
+    const numbers = [1, 2, 3, 4, 5];
+    const listItems = numbers.map((number) => 
+        <li key={number.toString()}>
+            {number}
+        </li>
+    );
+
+    ```
+
+    </details>
+
+    <details><summary>📚 id를 사용 </summary>
+
+    * id의 의미 자체가 고유한 값이므로 키값으로 사용하기 적합
+    * id가 있는 경우에는 보통 id값을 키값으로 사용
+
+    ```jsx
+
+    const todoItems = todos.map((todo) =>
+        <li key={todo.id}>
+            {todo.text}
+        </li>
+    );
+
+    ```
+
+    </details>
+
+    <details><summary>📚 인덱스를 사용 </summary>
+
+    * 배열에서 아이템 순서가 바뀔수 있는 경우에는 키값으로 인덱스를 사용하는 것을 권장하지 않음
+    * 리액트에서는 키를 명시적으로 넣어 주지 않으면 기본적으로 이 인덱스 값을 키값으로 사용
+
+    ```jsx
+
+    const todoItems = todos.map((todo, index) =>
+        <li key={index}>
+            {todo.text}
+        </li>
+    );
+
+    ```
+
+    </details>
 
   </details>
 
