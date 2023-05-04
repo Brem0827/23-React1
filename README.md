@@ -196,6 +196,18 @@
 
   * 사용자로부터 입력을 받기 위해 사용하는 양식
 
+  ```jsx
+
+  <form>
+    <label>
+        이름 :
+        <input type="text" name="name" />
+    </label>
+    <button type="submit">제출</button>
+  </form>
+
+  ```
+
   </details> 
 
   <details><summary>✅ 제어 컴포넌트 </summary>
@@ -226,6 +238,26 @@
   * 리액트에서는 value라는 arrtibute로 선택된 옵션의 값을 관리
 
   </details> 
+
+  <details><summary>🖊️ input type="file" 태그 </summary>
+
+  * 디바이스의 저장 장치로부터 사용자가 하나 또는 여러 개의 파일을 선택할 수 있게 해 주는 HTML 태그
+  * 서버로 파일을 업로드 하거나 자바스크립트의 File API를 사용해서 파일을 다룰 때 사용
+  * 읽기 전용이기 때문에 리액트에서는 비제어 컴포넌트가 됨
+
+  </details>
+
+  <details><summary>🖊️ 여러 개의 입력 다루기 </summary>
+
+  * 컴포넌트에 여러 개의 state를 선언하여 각각의 입력에 대해 사용하면 됨
+
+  </details>
+
+  <details><summary>🖊️ Input Null Value </summary>
+
+  * value prop은 넣되 자유롭게 입력할 수 있게 만들고 싶을 경우, 값에 undefined 또는 null을 넣으면 됨
+
+  </details>
 
 </details>  
 
