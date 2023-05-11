@@ -25,15 +25,331 @@
 <!-- main 영역 -->
 
 ## 강의 목록
-1. [10주차](#10주차)➡️
-2. [9주차](#9주차)➡️
-3. [7주차](#7주차)➡️
-4. [6주차](#6주차)➡️
-5. [5주차](#5주차)➡️
-6. [4주차](#4주차)➡️
-7. [3주차](#3주차)➡️
-8. [2주차](#2주차)➡️
-9. [1주차](#1주차)➡️
+1. [11주차](#11주차)➡️
+2. [10주차](#10주차)➡️
+3. [9주차](#9주차)➡️
+4. [7주차](#7주차)➡️
+5. [6주차](#6주차)➡️
+6. [5주차](#5주차)➡️
+7. [4주차](#4주차)➡️
+8. [3주차](#3주차)➡️
+9. [2주차](#2주차)➡️
+10. [1주차](#1주차)➡️
+
+
+---
+
+## 11주차
+
+* 05/11
+
+<details><summary>📘 State 끌어올리기 </summary>
+
+  <details><summary>📘 shared State </summary>
+
+  * 하위 컴포넌트가 공통된 부모 컴포넌트의 state를 공유하여 사용하는 것
+
+  </details> 
+
+  <details><summary>🖊️ 하위 컴포넌트에서 state 공유하기 </summary>
+
+  * 물의 끓음 여부를 알려주는 컴포넌트
+
+  ```jsx
+
+  function BoilingVerdict(props){
+    if(props.celsius >= 100){
+        return <p>물이 끓습니다.</p>
+    }
+    return <p>물이 끓지 않습니다.</p>
+  }
+
+  ```
+
+  ```jsx
+
+  function Calculator(props){
+    const [ temperature, setTemperature ] = useState(" ");
+
+    const handleChange = (event) => {
+        setTemperature(event.target.value);
+    }
+
+    return(
+        <fieldset>
+            <legend>섭씨 온도를 입력하세요 </ legend>
+            <input
+                value={temperature}
+                onChange={handleChange} />
+                <BoilingVerdict
+                    celsius={parseFloat(temperature)} />
+        </fieldset>
+    )
+  }
+
+  ```
+
+  * 입력 컴포넌트 추출하기
+
+  ```jsx
+
+  const scaleNames = {
+    c : '섭씨',
+    f : '화씨'
+  };
+
+  function TemperatureInput(props){
+    const [ temperature, setTemperature ] = useState(' ');
+
+    const handleChange = (event) => {
+        setTemperature(event.target.value);
+    }
+
+    return(
+        <fieldset>
+            <legend>온도를 입력하세요 (단위 : {scaleNames[props.scale]}) </ legend>
+            <input value={temperature} onChange={handleChange} />
+        </fieldset>
+    )
+  }
+
+  ```
+
+  ```jsx
+
+  function Calculator(props){
+    return(
+        <div>
+            <TemPeratureInput scale="c" />
+            <TemPeratureInput scale="f" />
+        </div>
+    );
+  }
+
+  ```
+
+  * 온도 변환 함수 작성하기
+
+  ```jsx
+
+  function toCelsius(fahrenheit){
+    return (fahrenheit - 32) * 5 / 9;
+  }
+
+  function toFahrenheit(celsius){
+    return (celsius * 5 / 9) - 32;
+  }
+
+  ```
+
+  ```jsx
+
+  function tryConvert(temperature, convert){
+    const input = parseFloat(temperature);
+    if(Number.isNaN(input)) {
+        return ' ';
+    }
+    const output = convert(input);
+    const rounded = Math.round(output * 1000) / 1000;
+    return rounded.toString();
+  }
+
+  ```
+
+  </details> 
+
+  <details><summary>📘 state 끌어올리기 </summary>
+
+  * 하위 컴포넌트의 state를 공통된 부모 컴포넌트로 끌어올려서 공유하는 방식
+
+  ```jsx
+
+  return (
+    ...
+    // 변경 전 <input value={temperature} onChange={handleChange} />
+    <input value={props.temperature} onChange={handleChange} />
+    ...
+  )
+
+  ```
+
+  ```jsx
+
+  const handleChange = (event) => {
+    // 변경 전 setTemperature(event.target.value);
+    props.onTemperatureChange(event.target.value);
+  }
+
+  ```
+
+  ```jsx
+
+  function TemperatureInput(props){
+    const handleChange = (event) => {
+    props.onTemperatureChange(event.target.value);
+  }
+
+    return(
+        <fieldset>
+            <legend>온도를 입력하세요 (단위 : {scaleNames[props.scale]}) </ legend>
+            <input value={temperature} onChange={handleChange} />
+        </fieldset>
+    )
+  }
+
+  ```
+
+  * Calculator 컴포넌트 변경하기
+
+  ```jsx
+
+  function Calculator(props){
+    const [ temperature, setTemperature ] = useState(' ');
+    const [ scale, setScale ] = useState('c');
+
+    const handleCelsiusChange = (temperature) => {
+        setTemperature(temperature);
+        setScale('c');
+    }
+
+    const handleFahrenheitChange = (temperature) => {
+        setTemperature(temperature);
+        setScale('f');
+    }
+
+    const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature ;
+    const fahrenheit = scale === 'f' ? tryConvert(temperature, toFahrenheit) : temperature ;
+
+    return(
+        <div>
+            <TemperatureInput
+                scale="c"
+                temperature={celsius}
+                onTemperatureChange={handleCelsiusChange} />
+            <TemperatureInput
+                scale="f"
+                temperature={celsius}
+                onTemperatureChange={handleFahrenheitChange} />
+            <BoilingVerdict
+                    celsius={parseFloat(celsius)} />
+        </div>
+    )
+  }
+
+  ```
+
+  </details> 
+
+</details>
+
+<details><summary>📘 합성 vs .상속 </summary>
+
+  <details><summary>📖 합성이란? </summary>
+
+  * 여러 개의 컴포넌트를 합쳐서 새로운 컴포넌트를 만드는 것
+  * 다양하고 복잡한 컴포넌트를 효율적으로 개발할 수 있음
+
+  ```jsx
+
+  function FancyBorder(props){
+    return(
+      <div className={'FancyBorder FancyBorder-' + props.color}>
+      </div>
+    );
+  }
+
+  ```
+
+  ```jsx
+
+  React.createElement(
+    type,
+    [props],
+    [...children]
+  )
+
+  ```
+
+  </details> 
+
+  <details><summary>📖 Containment </summary>
+
+  * 하위 컴포넌트를 포함하는 형태의 합성방법
+  * 리액트 컴포넌트의 props에 기본적으로 들어있는 children 속성을 사용
+  * 여러 개의 children 집합이 필요한 경우 별도로 props를 각각 정의해서 사용
+
+  ```jsx
+
+  function WelcomeDialog(props){
+    return(
+      <FancyBorder color="blue">
+        <h1 className="Dialog-title">
+          어서오세요
+        </h1>
+        <p className="Dialog-message">
+          우리 사이트에 방문하신 것을 환영합니다.
+        </p>
+      </FancyBorder>
+    );
+  }
+
+  ```
+
+  ```jsx
+
+  function SplitPane(props){
+    return(
+      <div className="SplitPane">
+        <div className="SplitPane-left">
+          {props.left};
+        </div>
+        <div className="SplitPane-right">
+          {props.right};
+        </div>
+      </div>
+    );
+  }
+
+  function App(props){
+    return(
+      <SplirPane
+        left={
+          <Contacts />
+        }
+        right={
+          <Chat />
+        }
+      />
+    );
+  }
+
+  ```
+
+  </details>
+
+  <details><summary>📖 Specialization </summary>
+
+  * 범용적인 개념을 구별되게 구체화하는것
+  * 범용적으로 쓸 수 있는 컴포넌트를 만들어 놓고 별도로 props를 각각 정의해서 사용
+
+  </details>
+
+  <details><summary>📖 Containment와 Specialization를 함께 사용 </summary>
+
+  * props.children을 통해 하위 컴포넌트를 포함시키기(Containment)
+  * 별도의 props를 선언하여 구체화 시키기(Specialization)
+
+  </details>
+
+  <details><summary>📖 상속 </summary>
+
+  * 다른 컴포넌트로부터 상속받아서 새로운 컴포넌트를 만드는 것
+  * 상속을 사용하여 컴포넌트를 만드는 것을 추천할 만한 사용 사례를 찾지 못함
+  * 리액트에서는 상속이라는 방법을 사용하는 것 보다는 합성을 사용하는 것이 더 좋음
+
+  </details>
+
+</details>
 
 ---
 
