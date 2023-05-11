@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import CommentList from './chapter05/js/CommentList';
 import NotificationList from './chapter06/js/NotificationList';
 import ProfileCard from './chapter13/js/ProfileCard';
-import TemperatureInput from './chapter12/js/Temperatureinput';
+import Calculator from './chapter12/js/Calculator';
 
 
 const rootElement = document.getElementById('root');
@@ -22,7 +22,7 @@ root.render(
         <Route path="CommentList" element={<CommentList />} />
         <Route path="NotificationList" element={<NotificationList />} />
         <Route path="ProfileCard" element={<ProfileCard />} />
-        <Route path="TemperatureInput" element={<TemperatureInput />} />
+        <Route path="Calculator" element={<Calculator />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
