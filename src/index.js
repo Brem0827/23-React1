@@ -7,6 +7,7 @@ import Clock from './chapter04/clock';
 import reportWebVitals from './reportWebVitals';
 import CommentList from './chapter05/js/CommentList';
 import NotificationList from './chapter06/js/NotificationList';
+import ProfileCard from './chapter12/js/ProfileCard';
 
 
 const rootElement = document.getElementById('root');
@@ -19,6 +20,7 @@ root.render(
         <Route path="clock" element={<Clock />} />
         <Route path="CommentList" element={<CommentList />} />
         <Route path="NotificationList" element={<NotificationList />} />
+        <Route path="ProfileCard" element={<ProfileCard />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

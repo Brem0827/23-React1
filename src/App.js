@@ -5,21 +5,24 @@ import Book from './chapter03/book';
 import Clock from "./chapter04/clock";
 import CommentList from "./chapter05/js/CommentList";
 import NotificationList from "./chapter06/js/NotificationList";
+import ProfileCard from "./chapter12/js/ProfileCard";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Link to = "./book">Book</Link>
-        <Link to = "./clock">Clock</Link>
-        <Link to = "./commentlist">CommentList</Link>
-        <Link to = "./NotificationList">NotificationList</Link>
+        <Link to = "./book">Book</Link><br />
+        <Link to = "./clock">Clock</Link><br />
+        <Link to = "./commentlist">CommentList</Link><br />
+        <Link to = "./NotificationList">NotificationList</Link><br />
+        <Link to = "./ProfileCard">ProfileCard</Link><br />
       </header>
         <Routes>
             <Route exact path="./book" component={Book}></Route>
             <Route exact path="./clock" component={Clock}></Route>
             <Route exact path="./commentlist" component={CommentList}></Route>
             <Route exact path="./NotificationList" component={NotificationList}></Route>
+            <Route exact path="./ProfileCard" component={ProfileCard}></Route>
         </Routes>
     </div>
   );

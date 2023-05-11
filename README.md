@@ -240,6 +240,104 @@
 
   </details> 
 
+  <details><summary>🖊️ 섭씨온도와 화씨온도 표시하기 </summary>
+
+
+  ```jsx
+
+  const scaleNames = {
+    c : '섭씨',
+    f : '화씨'
+  };
+
+  function TemperatureInput(props){
+    const handleChange = (event) => {
+        props.onTemperatureChange(event.target.value);
+    }
+
+    return(
+        <fieldset>
+            <legend>온도를 입력하세요 (단위 : {scaleNames[props.scale]}) </ legend>
+            <input value={props.temperature} onChange={handleChange} />
+        </fieldset>
+    );
+  }
+
+  export default TemperatureInput;
+
+  ```
+
+  ```jsx
+
+  import React, { useState } from "react";
+  import TemperatureInput from "./Temperatureinput";
+
+  function BoilingVerdict(props){
+      if(props.celsius >= 100){
+          return <p>물이 끓습니다.</p>
+      }
+      return <p>물이 끓지 않습니다.</p>
+  }
+
+  function toCelsius(fahrenheit){
+      return ((fahrenheit - 32) * 5) / 9;
+  }
+
+  function toFahrenheit(celsius){
+      return (celsius * 9) / 5 + 32;
+  }
+
+  function tryConvert(temperature, convert){
+      const input = parseFloat(temperature);
+      if(Number.isNaN(input)){
+          return "";
+      }
+
+      const output = convert(input);
+      const rounded = Math.round(output * 1000) / 1000;
+      return rounded.toString();
+  }
+
+  function Calculator(props){
+      const [temperature, setTemperature] = useState("");
+      const [scale, setScale] = useState("c");
+      
+      const handleCelsiusChange = (temperature) => {
+          setTemperature(temperature);
+          setScale("c");
+      };
+
+      const handleFahrenheitChange = (temperature) => {
+          setTemperature(temperature);
+          setScale("f");
+      };
+
+      const celsius = scale === "f" ? tryConvert(temperature, toCelsius) : temperature;
+      const fahrenheit = scale === "c" ? tryConvert(temperature, toFahrenheit) : temperature;
+
+      return (
+          <div>
+              <TemperatureInput
+                  scale = "c"
+                  temperature = {celsius}
+                  onTemperatureChange = {handleCelsiusChange}
+              />
+              <TemperatureInput
+                  scale="c"
+                  temperature = {temperature}
+                  onTemperatureChange = {handleFahrenheitChange}
+              />
+              <BoilingVerdict celsius={parseFloat(celsius)} />
+          </div>
+      );
+  }
+
+  export default Calculator;
+
+  ```
+
+  </details> 
+
 </details>
 
 <details><summary>📘 합성 vs .상속 </summary>
@@ -332,12 +430,82 @@
   * 범용적인 개념을 구별되게 구체화하는것
   * 범용적으로 쓸 수 있는 컴포넌트를 만들어 놓고 별도로 props를 각각 정의해서 사용
 
+  ```jsx
+
+  function Dialog(props){
+    return(
+      <FancyBorder color="blue">
+        <h1 className="Dialog-title">
+          {props.title}
+        </h1>
+        <p className="Dialog-message">
+          {props.message}
+        </p>
+      </FancyBorder>
+    );
+  }
+
+  function WelcomeDialog(props){
+    return(
+      <Dialog
+        title="어서오세요"
+        message="우리 사이트에 방문하신 것을 환영합니다."
+      />
+    );
+  }
+
+  ```
+
   </details>
 
   <details><summary>📖 Containment와 Specialization를 함께 사용 </summary>
 
   * props.children을 통해 하위 컴포넌트를 포함시키기(Containment)
   * 별도의 props를 선언하여 구체화 시키기(Specialization)
+
+  ```jsx
+
+  function Dialog(props){
+    return(
+      <FancyBorder color="blue">
+        <h1 className="Dialog-title">
+          {props.title}
+        </h1>
+        <p className="Dialog-message">
+          {props.message}
+        </p>
+        {props.children}
+      </FancyBorder>
+    )
+  }
+
+  function SignUpDialog(props){
+    const [nickname, setNickname] = useState("");
+
+    const handleChange = (event) => {
+      setNickname(event.target.value);
+    }
+
+    const handleSignUp = () => {
+      alert(`어서 오세요, ${nickname}님!`);
+    }
+
+    return(
+      <Dialog>
+        title="화성 탐사 프로그램"
+        message="닉네임을 입력해 주세요."
+        <input
+          title={nickname}
+          onChange={handleChange}
+        />
+        <button onClick={handleSignUp}>
+          가입하기
+        </button>
+      </Dialog>
+    );
+  }
+
+  ```
 
   </details>
 
