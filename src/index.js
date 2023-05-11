@@ -7,7 +7,8 @@ import Clock from './chapter04/clock';
 import reportWebVitals from './reportWebVitals';
 import CommentList from './chapter05/js/CommentList';
 import NotificationList from './chapter06/js/NotificationList';
-import ProfileCard from './chapter12/js/ProfileCard';
+import ProfileCard from './chapter13/js/ProfileCard';
+import TemperatureInput from './chapter12/js/Temperatureinput';
 
 
 const rootElement = document.getElementById('root');
@@ -21,6 +22,7 @@ root.render(
         <Route path="CommentList" element={<CommentList />} />
         <Route path="NotificationList" element={<NotificationList />} />
         <Route path="ProfileCard" element={<ProfileCard />} />
+        <Route path="TemperatureInput" element={<TemperatureInput />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

@@ -5,7 +5,8 @@ import Book from './chapter03/book';
 import Clock from "./chapter04/clock";
 import CommentList from "./chapter05/js/CommentList";
 import NotificationList from "./chapter06/js/NotificationList";
-import ProfileCard from "./chapter12/js/ProfileCard";
+import ProfileCard from "./chapter13/js/ProfileCard";
+import TemperatureInput from "./chapter12/js/Temperatureinput";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Link to = "./clock">Clock</Link><br />
         <Link to = "./commentlist">CommentList</Link><br />
         <Link to = "./NotificationList">NotificationList</Link><br />
+        <Link to = "./TemperatureInput">TemperatureInput</Link><br />
         <Link to = "./ProfileCard">ProfileCard</Link><br />
       </header>
         <Routes>
@@ -22,6 +24,7 @@ function App() {
             <Route exact path="./clock" component={Clock}></Route>
             <Route exact path="./commentlist" component={CommentList}></Route>
             <Route exact path="./NotificationList" component={NotificationList}></Route>
+            <Route exact path="./TemperatureInput" component={TemperatureInput}></Route>
             <Route exact path="./ProfileCard" component={ProfileCard}></Route>
         </Routes>
     </div>
