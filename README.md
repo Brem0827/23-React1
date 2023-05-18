@@ -42,6 +42,185 @@
 
 ## 12주차
 
+<details><summary>📘 합성 vs .상속 </summary>
+
+  <details><summary>📖 합성이란? </summary>
+
+  * 여러 개의 컴포넌트를 합쳐서 새로운 컴포넌트를 만드는 것
+  * 다양하고 복잡한 컴포넌트를 효율적으로 개발할 수 있음
+
+  ```jsx
+
+  function FancyBorder(props){
+    return(
+      <div className={'FancyBorder FancyBorder-' + props.color}>
+      </div>
+    );
+  }
+
+  ```
+
+  ```jsx
+
+  React.createElement(
+    type,
+    [props],
+    [...children]
+  )
+
+  ```
+
+  </details> 
+
+  <details><summary>📖 Containment </summary>
+
+  * 하위 컴포넌트를 포함하는 형태의 합성방법
+  * 리액트 컴포넌트의 props에 기본적으로 들어있는 children 속성을 사용
+  * 여러 개의 children 집합이 필요한 경우 별도로 props를 각각 정의해서 사용
+
+  ```jsx
+
+  function WelcomeDialog(props){
+    return(
+      <FancyBorder color="blue">
+        <h1 className="Dialog-title">
+          어서오세요
+        </h1>
+        <p className="Dialog-message">
+          우리 사이트에 방문하신 것을 환영합니다.
+        </p>
+      </FancyBorder>
+    );
+  }
+
+  ```
+
+  ```jsx
+
+  function SplitPane(props){
+    return(
+      <div className="SplitPane">
+        <div className="SplitPane-left">
+          {props.left};
+        </div>
+        <div className="SplitPane-right">
+          {props.right};
+        </div>
+      </div>
+    );
+  }
+
+  function App(props){
+    return(
+      <SplirPane
+        left={
+          <Contacts />
+        }
+        right={
+          <Chat />
+        }
+      />
+    );
+  }
+
+  ```
+
+  </details>
+
+  <details><summary>📖 Specialization </summary>
+
+  * 범용적인 개념을 구별되게 구체화하는것
+  * 범용적으로 쓸 수 있는 컴포넌트를 만들어 놓고 별도로 props를 각각 정의해서 사용
+
+  ```jsx
+
+  function Dialog(props){
+    return(
+      <FancyBorder color="blue">
+        <h1 className="Dialog-title">
+          {props.title}
+        </h1>
+        <p className="Dialog-message">
+          {props.message}
+        </p>
+      </FancyBorder>
+    );
+  }
+
+  function WelcomeDialog(props){
+    return(
+      <Dialog
+        title="어서오세요"
+        message="우리 사이트에 방문하신 것을 환영합니다."
+      />
+    );
+  }
+
+  ```
+
+  </details>
+
+  <details><summary>📖 Containment와 Specialization를 함께 사용 </summary>
+
+  * props.children을 통해 하위 컴포넌트를 포함시키기(Containment)
+  * 별도의 props를 선언하여 구체화 시키기(Specialization)
+
+  ```jsx
+
+  function Dialog(props){
+    return(
+      <FancyBorder color="blue">
+        <h1 className="Dialog-title">
+          {props.title}
+        </h1>
+        <p className="Dialog-message">
+          {props.message}
+        </p>
+        {props.children}
+      </FancyBorder>
+    )
+  }
+
+  function SignUpDialog(props){
+    const [nickname, setNickname] = useState("");
+
+    const handleChange = (event) => {
+      setNickname(event.target.value);
+    }
+
+    const handleSignUp = () => {
+      alert(`어서 오세요, ${nickname}님!`);
+    }
+
+    return(
+      <Dialog>
+        title="화성 탐사 프로그램"
+        message="닉네임을 입력해 주세요."
+        <input
+          title={nickname}
+          onChange={handleChange}
+        />
+        <button onClick={handleSignUp}>
+          가입하기
+        </button>
+      </Dialog>
+    );
+  }
+
+  ```
+
+  </details>
+
+  <details><summary>📖 상속 </summary>
+
+  * 다른 컴포넌트로부터 상속받아서 새로운 컴포넌트를 만드는 것
+  * 상속을 사용하여 컴포넌트를 만드는 것을 추천할 만한 사용 사례를 찾지 못함
+  * 리액트에서는 상속이라는 방법을 사용하는 것 보다는 합성을 사용하는 것이 더 좋음
+
+  </details>
+  
+</details>
+
 <details><summary>📘 컨텍스트 </summary>
 
   <details><summary>📘 컨텍스트란 무엇인가? </summary>
@@ -411,185 +590,6 @@
   ```
 
   </details> 
-
-</details>
-
-<details><summary>📘 합성 vs .상속 </summary>
-
-  <details><summary>📖 합성이란? </summary>
-
-  * 여러 개의 컴포넌트를 합쳐서 새로운 컴포넌트를 만드는 것
-  * 다양하고 복잡한 컴포넌트를 효율적으로 개발할 수 있음
-
-  ```jsx
-
-  function FancyBorder(props){
-    return(
-      <div className={'FancyBorder FancyBorder-' + props.color}>
-      </div>
-    );
-  }
-
-  ```
-
-  ```jsx
-
-  React.createElement(
-    type,
-    [props],
-    [...children]
-  )
-
-  ```
-
-  </details> 
-
-  <details><summary>📖 Containment </summary>
-
-  * 하위 컴포넌트를 포함하는 형태의 합성방법
-  * 리액트 컴포넌트의 props에 기본적으로 들어있는 children 속성을 사용
-  * 여러 개의 children 집합이 필요한 경우 별도로 props를 각각 정의해서 사용
-
-  ```jsx
-
-  function WelcomeDialog(props){
-    return(
-      <FancyBorder color="blue">
-        <h1 className="Dialog-title">
-          어서오세요
-        </h1>
-        <p className="Dialog-message">
-          우리 사이트에 방문하신 것을 환영합니다.
-        </p>
-      </FancyBorder>
-    );
-  }
-
-  ```
-
-  ```jsx
-
-  function SplitPane(props){
-    return(
-      <div className="SplitPane">
-        <div className="SplitPane-left">
-          {props.left};
-        </div>
-        <div className="SplitPane-right">
-          {props.right};
-        </div>
-      </div>
-    );
-  }
-
-  function App(props){
-    return(
-      <SplirPane
-        left={
-          <Contacts />
-        }
-        right={
-          <Chat />
-        }
-      />
-    );
-  }
-
-  ```
-
-  </details>
-
-  <details><summary>📖 Specialization </summary>
-
-  * 범용적인 개념을 구별되게 구체화하는것
-  * 범용적으로 쓸 수 있는 컴포넌트를 만들어 놓고 별도로 props를 각각 정의해서 사용
-
-  ```jsx
-
-  function Dialog(props){
-    return(
-      <FancyBorder color="blue">
-        <h1 className="Dialog-title">
-          {props.title}
-        </h1>
-        <p className="Dialog-message">
-          {props.message}
-        </p>
-      </FancyBorder>
-    );
-  }
-
-  function WelcomeDialog(props){
-    return(
-      <Dialog
-        title="어서오세요"
-        message="우리 사이트에 방문하신 것을 환영합니다."
-      />
-    );
-  }
-
-  ```
-
-  </details>
-
-  <details><summary>📖 Containment와 Specialization를 함께 사용 </summary>
-
-  * props.children을 통해 하위 컴포넌트를 포함시키기(Containment)
-  * 별도의 props를 선언하여 구체화 시키기(Specialization)
-
-  ```jsx
-
-  function Dialog(props){
-    return(
-      <FancyBorder color="blue">
-        <h1 className="Dialog-title">
-          {props.title}
-        </h1>
-        <p className="Dialog-message">
-          {props.message}
-        </p>
-        {props.children}
-      </FancyBorder>
-    )
-  }
-
-  function SignUpDialog(props){
-    const [nickname, setNickname] = useState("");
-
-    const handleChange = (event) => {
-      setNickname(event.target.value);
-    }
-
-    const handleSignUp = () => {
-      alert(`어서 오세요, ${nickname}님!`);
-    }
-
-    return(
-      <Dialog>
-        title="화성 탐사 프로그램"
-        message="닉네임을 입력해 주세요."
-        <input
-          title={nickname}
-          onChange={handleChange}
-        />
-        <button onClick={handleSignUp}>
-          가입하기
-        </button>
-      </Dialog>
-    );
-  }
-
-  ```
-
-  </details>
-
-  <details><summary>📖 상속 </summary>
-
-  * 다른 컴포넌트로부터 상속받아서 새로운 컴포넌트를 만드는 것
-  * 상속을 사용하여 컴포넌트를 만드는 것을 추천할 만한 사용 사례를 찾지 못함
-  * 리액트에서는 상속이라는 방법을 사용하는 것 보다는 합성을 사용하는 것이 더 좋음
-
-  </details>
 
 </details>
 
