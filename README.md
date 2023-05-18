@@ -49,6 +49,9 @@
   * 여러 개의 컴포넌트를 합쳐서 새로운 컴포넌트를 만드는 것
   * 다양하고 복잡한 컴포넌트를 효율적으로 개발할 수 있음
 
+  [합성 vs 상속](./src/image/Composition.png)
+  <img src="./src/image/Composition.png"/>
+
   ```jsx
 
   function FancyBorder(props){
@@ -75,8 +78,22 @@
   <details><summary>📖 Containment </summary>
 
   * 하위 컴포넌트를 포함하는 형태의 합성방법
+  * 컴포넌트에 따라서는 어떤 자식 엘리먼트가 들어올지 미리 예상할 수 없는 경우가 있습니다.
+  * 범용적인 '박스' 역할을 하는 Sidebar 혹은 Dialog와 같은 컴포넌트에서 특히 자주 볼 수 있습니다.
   * 리액트 컴포넌트의 props에 기본적으로 들어있는 children 속성을 사용
   * 여러 개의 children 집합이 필요한 경우 별도로 props를 각각 정의해서 사용
+
+  ```jsx
+
+  function FancyBorder(props){
+    return(
+      <div className={'FancyBorder FancyBorder-' + props.color}>
+        {props.children}
+      </div>
+    );
+  }
+
+  ```
 
   ```jsx
 
@@ -127,9 +144,41 @@
 
   </details>
 
+  <details><summary>📖 React.createElement() </summary>
+
+  ```jsx
+
+  const jsxElement = <h1 className="jsx">JSX Element</h1>
+
+  ```
+
+  ```jsx
+
+  const reactElement = React.createElement(
+    'h1', // tag
+    {className : 'obj' }, // props
+    'Element', // child element
+  )
+
+  ```
+
+  ```jsx
+
+  React.createElement(
+    type,
+    [props],
+    [...children]
+  )
+
+  ```
+
+  </details>
+
   <details><summary>📖 Specialization </summary>
 
   * 범용적인 개념을 구별되게 구체화하는것
+  * 객체지향 언어에서는 상속을 특수화 하여 구현
+  * 리액트에서는 합성을 사용하여 특수화를 구현
   * 범용적으로 쓸 수 있는 컴포넌트를 만들어 놓고 별도로 props를 각각 정의해서 사용
 
   ```jsx
@@ -218,7 +267,7 @@
   * 리액트에서는 상속이라는 방법을 사용하는 것 보다는 합성을 사용하는 것이 더 좋음
 
   </details>
-  
+
 </details>
 
 <details><summary>📘 컨텍스트 </summary>
@@ -270,6 +319,54 @@
 
   * Context.displayName
   1. 크롬의 리액트 개발자 도구에서 표시되는 컨텍스트 객체의 이름
+
+  </details>
+
+  <details><summary>📘 NOTE.Provider value에서 주의해야 할 사항 </summary>
+
+  * 컨텍스트는 재렝더링 여부를 결정할 때 레퍼런스 정보를 사용하기 때문에 Provider의 부모 컴포넌트가 재렌더링되었을 경우, 의도치 않게 consumer 컴포넌트의 재렌더링이 일어날 수 있습니다.
+  
+  ```jsx
+
+  function App(props){
+    return(
+      <MyContext.Provider value={{ something : 'something' }}>
+        <Toolbar />
+      </ MyContext.Provider>
+    );
+  }
+
+  ```
+
+  ```jsx
+
+  function App(props){
+    const [value, setValue] = useState({ something : "something" });
+    return(
+      <MyContext.Provider value={value}>
+        <Toolbar />
+      </ MyContext.Provider>
+    );
+  }
+
+  ```
+
+  </details>
+
+  <details><summary>📘 function as a child </summary>
+
+  * 컴포넌트의 자식으로 함수를 사용하는 방법입니다.
+  * 리액트에서는 기본적으로 하위 컴포넌트들을 children이라는 prop으로 전달해 주는데 children으로 컴포넌트 대신 함수를 사용합니다.
+
+  ```jsx
+
+  //  children이라는 props를 직접 선언
+  <Profile children={name => <p>이름 : {name}</p>}>
+
+  // Profile 컴포넌트로 감싸서 children으로 만드는 방식
+  <Profile>{name => <p>이름 : {name}</p>}</Profile>
+
+  ```
 
   </details>
 
