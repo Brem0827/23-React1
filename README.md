@@ -49,7 +49,6 @@
   * 여러 개의 컴포넌트를 합쳐서 새로운 컴포넌트를 만드는 것
   * 다양하고 복잡한 컴포넌트를 효율적으로 개발할 수 있음
 
-  [합성 vs 상속](./src/image/Composition.png)
   <img src="./src/image/Composition.png"/>
 
   ```jsx
@@ -277,6 +276,9 @@
   * 컴포넌트들 사이에서 데이터를 props를 통해 전달하는 것이 아닌 컴포넌트 트리를 통해 곧바로 데이터를 전달하는 방식
   * 어떤 컴포넌트든지 컨텍스트에 있는 데이터에 쉽게 접근할 수 있음
 
+  <img src="./src/image/RootDOMNodeProps.png"/>
+  <img src="./src/image/Context.png"/>
+
   </details>
 
   <details><summary>📘 언제 컨텍스트를 사용해야 하는가? </summary>
@@ -284,12 +286,140 @@
   * 여러 컴포넌트에서 계속해서 접근이 일어날 수 있는 데이터들이 있는 경우
   * Provider의 모든 하위 컴포넌트가 얼마나 깊이 위치해 있는지 관계없이 컨텍스트의 데이터를 읽을수 있음
 
+  ```jsx
+
+  function App(props){
+    return <Toolbar theme="dark" />;
+  }
+
+  function Toolbar(props){
+    // 이 Toolbar 컴포넌트는 ThemeButton에 theme를 넘겨주기 위해 'theme.props'을 가져가야 합니다.
+    //  혅 ㅐ테마를 알아야 하는 모든 버튼에 대해서 props로 전달하는 것은 굉장히 비 효율적 입니다.
+    return(
+      <div>
+        <ThemeButton theme={props.theme} />
+      </div>
+    );
+  }
+
+  function ThemeButton(props){
+    return <Button theme={props.theme} />;
+  }
+
+  ```
+
+  ```jsx
+
+  // 컨텍스트는 데이터를 매번 컴포넌트를 통해 전달할 필요 없이 컴포넌트 트리로 곧바로 전달하게 해 줍니다.
+  // 여기에서는 현재 테마를 위한 컨텍스트를 생성하며, 기본값은 'light'입니다.
+  const ThemeContext = React.createContext("light");
+
+  // Provider를 사용하여 하위 컴포넌트들에게 현재 테마 데이터를 전달합니다.
+  // 모든 하위 컴포넌트들은 컴포넌트 트리 하단에 얼마나 깊이 있는지에 관계없이 데이터를 읽을 수 있습니다.
+  // 여기에서는 현재 테마값으로 'dark'를 전달하고 있습니다.
+  function App(props){
+    return(
+      <ThemeContext.Provider value="dark">
+        <Toolbar />
+      <ThemeContext.Provider>
+    );
+  }
+
+  // 이제 중간에 위치한 컴포넌트는 테마 데이터를 하위 컴포넌트로 전달할 필요가 없습니다.
+  function Toolbar(props){
+    return(
+      <div>
+        <ThemedButton />
+      </div>
+    );
+  }
+
+  function ThemedButton(props){
+    // 리액트는 가장 가까운 상위 테마 Provider를 찾아서 해당되는 값을 사용합니다.
+    // 만약 해단되는 Provider가 없을 경우 기본값을 사용합니다.
+    // 여기에서는 상위 Provider가 있기 때문에 현재 테마의 값은 'dark'가 됩니다.
+    return(
+      <ThemeContext.Consumer>
+        {value => <Button theme={value} />}
+      <ThemeContext.Consumer>
+    );
+  }
+
+  ```
+
   </details>
 
   <details><summary>📘 컨텍스트 사용전 고려해야 할 점 </summary>
 
   * 컴포넌트와 컨텍스트가 연동되면 재 사용성이 떨어짐
   * 다른 레벨의 많은 컴포넌트가 데이터를 필요로 하는 경우가 아니라면, 기존 방식대로 props를 통해 데이터를 전달하는 것이 더 적합
+
+  ```jsx
+
+  // Page 컴포넌트는 PageLayout 컴포넌트를 렌더링
+  <Page user={user} avatarSize={avatarSize} />
+
+  // PageLayout 컴포넌트는 NavigationBar 컴포넌트를 렌더링
+  <PageLayout user={user} avatarSize={avatarSize} />
+
+  // NavigationBar 컴포넌트는 Link 컴포넌트를 렌더링
+  <NavigationBar user={user} avatarSize={avatarSize} />
+
+  // Link 컴포넌트는 Avatar 컴포넌트를 렌더링
+  <Link href={user.permalink}>
+    <Avatar user={user} avatarSize={avatarSize} />
+  </Link>
+
+  ```
+
+  ```jsx
+
+  function Page(props){
+      const user = props.user;
+
+      const userLink = (
+        <Link href={user.permalink}>
+          <Avatar user={user} size={props.avatarSize} />
+        </Link>
+      );
+
+      // Page 컴포넌트는 PageLayout 컴포넌트를 렌더링
+      // 이때 props로 userLink를 함께 전달함
+      return <PageLayout userLink={userLink} />;
+  }
+
+  // PageLayout 컴포넌트는 NavigationBar 컴포넌트를 렌더링
+  <PageLayout userLink={...} />
+
+  // NavigationBar 컴포넌트눈 props로 전달받은 userLink element를 리턴
+  <NavigationBar userLink={...} />
+
+  ```
+
+  ```jsx
+
+  function Page(props){
+    const user = props.user;
+
+    const userLink = (
+      <NavigationBar>
+        <Link href={user.permalink}>
+          <Avatar user={user} size={props.avatarSize} />
+        </Link>
+      </NavigationBar>
+    );
+    const content = <Feed user={user} />;
+
+    return(
+      <PageLayout
+        topBar={topBar}
+        content={content}
+      />
+    );
+  }
+
+  ```
+
 
   </details>
 
@@ -300,15 +430,51 @@
   2. 컨텍스트 객체를 리턴함
   3. 기본값으로 undefined를 넣으면 기본값이 사용되지 않음
 
+  ```jsx
+
+  const MyContext = React.createContext(기본값);
+
+  ```
+
   * Context.Provider
   1. 모든 컨텍스트 객체는 Provider라는 컴포넌트를 갖고 있음
   2. Provider 컴포넌트로 하위 컴포넌트들을 감싸주면 모든 하위 컴포넌트들이 해당 컨텍스트의 데이터에 접근할 수 있게 됨
   3. Provider에는 value라는 prop이 있으며, 이것이 데이터로써 하위에 있는 컴포넌트들에게 전달됨
   4. 여러 개의 Provider 컴포넌트를 중첩시켜 사용할 수 있음
 
+  ```jsx
+
+  <MyContext.Provider value={/* some value */}>
+
+  ```
+
   * Class.contextType
   1. Provider 하위에 있는 클래스 컴포넌트에서 컨텍스트의 데이터에 접근하기 위해 사용
   2. 단 하나의 컨택스트만을 구독할 수 있음
+
+  ```jsx
+
+  class MyClass extends React.Component {
+    componentDidMount(){
+      let value = this.context;
+    }
+
+    componentDidUpdate(){
+      let value = this.context;
+    }
+
+    componentWillMount(){
+      let value = this.context;
+    }
+
+    render(){
+      let value = this.context;
+    }
+  }
+
+  MyClass.contextType = MyContext;
+
+  ```
 
   * Context.Consumer
   1. 컨텍스트의 데이터를 구독하는 컴포넌트
@@ -319,6 +485,26 @@
 
   * Context.displayName
   1. 크롬의 리액트 개발자 도구에서 표시되는 컨텍스트 객체의 이름
+
+  ```jsx
+
+  <MyContext.Consumer>
+    {value => /* 컨텍스트의 값에 따라서 컴포넌트들을 렌더링 */}
+  </MyContext.Consumer>
+
+  ```
+
+  ```jsx
+
+  const MyContext = React.createContext(/* some Value */);
+  MyContext.displayName = 'MyDisplayName';
+
+
+  <MyContext.Provider>
+
+  <MyContext.Consumer>
+
+  ```
 
   </details>
 
@@ -374,6 +560,53 @@
 
   * Provider 컴포넌트와 Consumer 컴포넌트를 여러 개 중첩해서 사용하면 됨
 
+  ```jsx
+
+  const ThemeContext = React.createContext("light");
+
+  const UserContext = React.createContext({
+    name : 'Guest',
+  });
+
+  class App extends React.Component {
+    render() {
+      const { signedInUser, theme } = this.props;
+
+      return(
+        <ThemeContext.Provider value={theme}>
+          <UserContext.Provider value={signedInUser}>
+            <Layout />
+          </UserContext.Provider>
+        </ThemeContext.Provider>
+      );
+    }
+  }
+
+  function Layout(){
+    return(
+      <div>
+        <Sidebar />
+        <Content />
+      </div>
+    );
+  }
+
+  function Content(){
+    return(
+      <ThemeContext.Consumer>
+        {theme => (
+          <UserContext.Consumer>
+            {user => (
+              <ProfilePage user={user} theme={theme} />
+            )}
+          </UserContext.Consumer>  
+        )}
+      </ThemeContext.Consumer>
+    );
+  }
+
+  ```
+
   </details>
 
   <details><summary>📘 useContext() </summary>
@@ -381,6 +614,27 @@
   * 함수 컴포넌트에서 컨텍스트를 쉽게 사용할 수 있게 해주는 훅
   * React.createContext() 함수 호출로 생성된 컨텍스트 객체를 인자로 받아서 현재 컨텍스트의 값을 리턴
   * 컨텍스트의 값이 변경되면 변경된 값과 함께 useContext() 훅을 사용하는 컴포넌트가 재렌더링됨
+
+  ```jsx
+
+  function MyComponent(props){
+    const value = useContext(MyContext);
+
+    return(
+      ...
+    )
+  }
+
+  ```
+
+  ```jsx
+
+  useContext(MyContext);
+
+  useContext(MyContext.Consumer);
+  useContext(MyContext.Provider);
+
+  ```
 
   </details>
 
