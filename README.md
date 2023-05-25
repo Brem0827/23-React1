@@ -25,18 +25,258 @@
 <!-- main 영역 -->
 
 ## 강의 목록
-1. [12주차](#12주차)➡️
-2. [11주차](#11주차)➡️
-3. [10주차](#10주차)➡️
-4. [9주차](#9주차)➡️
-5. [7주차](#7주차)➡️
-6. [6주차](#6주차)➡️
-7. [5주차](#5주차)➡️
-8. [4주차](#4주차)➡️
-9. [3주차](#3주차)➡️
-10. [2주차](#2주차)➡️
-11. [1주차](#1주차)➡️
+1. [13주차](#13주차)➡️
+2. [12주차](#12주차)➡️
+3. [11주차](#11주차)➡️
+4. [10주차](#10주차)➡️
+5. [9주차](#9주차)➡️
+6. [7주차](#7주차)➡️
+7. [6주차](#6주차)➡️
+8. [5주차](#5주차)➡️
+9. [4주차](#4주차)➡️
+10. [3주차](#3주차)➡️
+11. [2주차](#2주차)➡️
+12. [1주차](#1주차)➡️
 
+---
+
+## 13주차
+
+<details><summary>📘 CSS </summary>
+
+  <details><summary>📖 CSS란? </summary>
+
+  * Cascading Style Sheets의 약자로 스타일링을 위한 언어 입니다.
+  * 하나의 스타일이 여러 개의 엘리먼트에 적용될 수도 있고, 하나의 엘리먼트에도 여러 개의 스타일이 적용될 수도 있습니다.
+
+  </details>
+
+  <details><summary>📖 선택자 </summary>
+
+  * 스타일을 어떤 엘리먼트에 적용할 것 인지 선택하게 해 주는것
+
+    <details><summary>📖 엘리먼트 선택자 </summary>
+
+    * HTML 태그의 이름으로 엘리먼트를 선택
+
+    </details>
+
+    <details><summary>📖 id 선택자 </summary>
+
+    * 엘리먼트의 id 속성으로 엘리먼트를 선택
+    * 샤프 뒤에 아이디를 넣어 사용
+
+    </details>
+
+    <details><summary>📖 클래스 선택자 </summary>
+
+    * 엘리먼트의 클래스 속성으로 엘리먼트를 선택
+    * 점 뒤에 클래스명을 넣어서 사용
+
+    </details>
+
+    <details><summary>📖 전체 선택자 </summary>
+
+    * 전체 엘리먼트에 적용하기 위한 선택자
+    * 한국에서는 흔히 별표라고 불리는 Asterisk(*)를 사용
+
+    </details>
+
+    <details><summary>📖 그룹 선택자 </summary>
+
+    * 여러 가지 선택자를 그룹으로 묶어 하나의 스타일을 적용하기 위해 사용하는 선택자
+    * 각 선택자를 콤마로 구분하여 적용
+
+    </details>
+
+    <details><summary>📖 엘리먼트의 상태와 관련된 선택자 </summary>
+
+    * 엘리먼트의 다양한 상태에 따라 스타일을 적용하기 위한 선택자
+    * :hover, :active, :focus, :checked, :first-child, :last-child
+
+    </details>
+
+    ```css
+
+  h1 {
+    color : green;
+  }
+
+  ```
+
+  ```html
+
+  <div id="section">
+    ...
+  </div>
+
+  ```
+
+  ```css
+
+  #section {
+    background-color: black;
+  }
+
+  ```
+
+  ```html
+
+  <span class="medium">
+    ...
+  </span>
+
+  <p class="medium">
+    ...
+  </p>
+
+  ```
+
+  ```css
+
+  /* 클래스 선택자 */
+  .medium {
+    font-size : 20px;
+  }
+
+  p.medium {
+    font-size : 20px;
+  }
+
+  /* 전체 선택자 */
+  * {
+    font-size : 20px;
+    color: blue;
+  }
+  /* 그룹 선택자 */
+  h1{
+    color : black;
+    text-align : center;
+  }
+
+  h2{
+    color: black;
+    text-align : center;
+  }
+
+  p{
+    color: black;
+    text-align : center;
+  }
+
+  h1, h2, p{
+    color: black;
+    text-align : center;
+  }
+
+  ```
+
+  </details>
+
+  <details><summary>📖 CSS 문법과 선택자 </summary>
+
+  * 선택자와 스타일로 구성됨
+  * 선택자를 먼저 쓰고 이후에 적용할 스타일을 중괄호 안에 세미콜론으로 구분하여 하나씩 기술
+  * 각 스타일은 CSS 속성과 값으로 이루어진 키와 값 쌍이며, CSS 속성의 이름과 값을 콜론으로 구분
+
+  </details>
+
+  <details><summary>📖 레이아웃과 관련된 속성 </summary>
+
+  * 레이아웃은 화면에 엘리먼트들을 어떻게 `배치`할 것 인지를 의미
+  * `display` : 엘리먼트를 어떻게 표시할지 그 방법에 관한 속성
+  * `visibility` : 엘리먼트를 화면에 보여주거나 감추기 위한 속성
+  * `position` : 엘리먼트를 어떻게 위치시킬 것인지 정의하기 위한 속성
+  * `width / height` : 가로 / 세로 길이를 정의하기 위한 속성
+  * `min-width / max-width` : 최소 / 최대 가로 길이를 정의하기 위한 속성
+  * `min-height / max-height` : 최소 / 최대 세로 길이를 정의하기 위한 속성
+
+  </details>
+
+  <details><summary>📖 플렉스 박스 </summary>
+
+  * 기존 CSS의 레이아웃 사용의 불편한 부분을 개선하기 위해 등장
+  * 플렉스 컨테이너와 플렉스 아이템으로 구성되며 컨테이너는 여러 개의 아이템을 포함
+  * 컨테이너의 플렉스와 관련된 CSS 속성은 아이템들을 어떤 방향과 어떤 순서로 배치할 것인지를 정의
+
+    <details><summary>📖 flex-direction </summary>
+
+    * flex-direction : 아이템들이 어떤 방향으로 배치될 것인지를 지정하기 위한 속성
+    * main axis : flex-direction으로 지정된 방향으로 향하는 축
+    * cross axis : main axis를 가로지르는 방향으로 향하는 축
+
+    </details>
+
+    <details><summary>📖 aling-items </summary>
+
+    * 컨테이너 내에서 아이템을 어떻게 정렬할 것인지를 결정하기 위한 속성
+    * cross axis를 기준으로 함
+
+    </details>
+
+    <details><summary>📖 justify-content </summary>
+
+    * 컨테이너 내에서 아이템들을 어떻게 나란히 맞출 것인지를 결정하기 위한 속성
+    * main axis를 기준으로 함
+
+    </details>
+
+  </details>
+
+  <details><summary>📖 폰트와 관련된 속성 </summary>
+
+    <details><summary>📖 font-family </summary>
+
+    * 어떤 글꼴을 사용할 것인지를 결정하는 속성
+    * 지정한 글꼴을 찾지 못했을 경우를 대비해서 사용할 글꼴을 순서대로 지정해줘야 함
+
+    </details>
+
+    <details><summary>📖 font-size </summary>
+
+    * 글꼴의 크기와 관련된 속성
+
+    </details>
+
+    <details><summary>📖 font-weight </summary>
+
+    * 글꼴의 두께와 관련된 속성
+
+    </details>
+
+    <details><summary>📖 font-style </summary>
+
+    * 글꼴의 스타일을 지정하기 위한 속성
+    
+    </details>
+
+  </details>
+
+  <details><summary>📖 많이 사용하는 기타 속성 </summary>
+
+    <details><summary>📖 background-color </summary>
+
+    * 엘리먼트의 배경색을 지정하기 위한 속성
+
+    </details>
+
+    <details><summary>📖 border </summary>
+
+    * 엘리먼트에 테두리를 넣기 위한 속성
+
+    </details>
+
+  </details>
+
+  <details><summary>📖 styled-components </summary>
+
+  * CSS문법을 그대로 사용하면서 결과물을 스타일링된 컴포넌트 형태로 만들어주는 오픈 소스 라이브러리
+  * 컴포넌트 개념을 사용하기 때문에 리액트와 궁합이 잘 맞음
+  * 태그드 템플릿 리터럴을 사용하여 구성 요소의 스타일을 지정
+
+  </details>
+
+</details> 
 
 ---
 
