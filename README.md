@@ -96,7 +96,7 @@
 
     </details>
 
-    ```css
+  ```css
 
   h1 {
     color : green;
